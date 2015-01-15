@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+
+
+
+
+
+
+
+
+
+     
+    
+    
+
+
+
+
+<rss version="2.0"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:media="http://search.yahoo.com/mrss/"
+    xmlns:ka="http://kickapps.com/karss">
+    <channel>
+        <title>The Blueprint I</title>
+        <link>http://www.bet.com/content/betcom/video/thegame/season-6/full-episodes/episode-601-the-blueprint-1/_jcr_content/leftcol/videoplayer.mrss</link>
+        <description>Derwin&apos;s personal and professional life are in disarray after he is traded from the Sabers. Meanwhile, #1 draft pick Bryce &quot;Blue&quot; Westbrook celebrates his Sabers acquisition by attending Malik&apos;s pop-up party and kissing childhood crush Keira Michelle Whitaker.</description>
+        <pubDate>Tue, 2 Apr 2013 11:00:00 GMT</pubDate>
+        <dc:date>2013-04-02T11:00:00Z</dc:date>
+        
+        <item>
+            <title>The Blueprint I</title>
+            <link>http://www.bet.com/video/thegame/season-6/full-episodes/episode-601-the-blueprint-1.html</link>
+            <playlistMrssUrl>http%3A%2F%2Fwww.bet.com%2Fcontent%2Fbetcom%2Fvideo%2Fthegame%2Fseason-6%2Ffull-episodes%2Fepisode-601-the-blueprint-1%2F_jcr_content%2Fleftcol%2Fvideoplayer.videoplaylistmrss.mrss%3Fpt%3DEmbedFullPage%26type%3Dembedfullpage%26ordts%3Dy</playlistMrssUrl>
+            
+            <description>Derwin&apos;s personal and professional life are in disarray after he is traded from the Sabers. Meanwhile, #1 draft pick Bryce &quot;Blue&quot; Westbrook celebrates his Sabers acquisition by attending Malik&apos;s pop-up party and kissing childhood crush Keira Michelle Whitaker.</description>
+            <pubDate>Tue, 2 Apr 2013 11:00:00 GMT</pubDate>
+            <guid>f645dfd9-ef1b-4f30-bfd5-edfac4d33a05</guid>
+            <dc:creator>admin</dc:creator>
+            <dc:date>2013-04-02T11:00:00Z</dc:date>
+            <ka:omnitureTracking><![CDATA[prop5=The+Game&eVar5=The+Game&prop6=unknown&eVar6=unknown&eVar17=parameters.eVar17&prop48=6&eVar48=6&prop49=1&eVar49=1&prop39=0FullEpisode&eVar39=0FullEpisode&prop45=unknown&eVar45=unknown&prop31=4&prop13=video&prop54=unknown&eVar54=unknown&prop55=04/02/13&eVar55=04/02/13&prop56=+&eVar56=+&prop57=Drama&eVar57=Drama&prop58=long&eVar58=long&mediaName=The+Game%3A+The+Blueprint+I]]></ka:omnitureTracking>
+            
+            <ka:closedCaption format="dfxp">http://www.bet.com/content/betcom/video/thegame/season-6/full-episodes/episode-601-the-blueprint-1/jcr:content/leftcol/videoplayer/dfxp.xml</ka:closedCaption>
+            
+            
+            <ka:cuePoints>
+            
+           
+                    <ka:cuePoint>
+                           <ka:cuePointTime>0</ka:cuePointTime>
+                           <ka:cuePointData>
+                               <type>ad</type>
+                               <format>VAST 2.0</format>
+                               <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=episode-601-the-blueprint-1;sub=thegame;prod=;sz=250x250;show=thegame;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;tile=4;ct=indivmediapage;loc=4;anum=1;ord=&lt;parameters.betord&gt;;prog=fullepisode</uri>
+                           </ka:cuePointData>
+                    </ka:cuePoint>
+                            <ka:cuePoint>
+                                <ka:cuePointTime>01:38</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=episode-601-the-blueprint-1;sub=thegame;prod=;sz=250x250;show=thegame;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;tile=4;ct=indivmediapage;loc=4;anum=3;ord=&lt;parameters.betord&gt;;prog=fullepisode</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                            <ka:cuePoint>
+                                <ka:cuePointTime>09:32</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=episode-601-the-blueprint-1;sub=thegame;prod=;sz=250x250;show=thegame;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;tile=4;ct=indivmediapage;loc=4;anum=4;ord=&lt;parameters.betord&gt;;prog=fullepisode</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                <!--
+                            <ka:cuePoint>
+                                <ka:cuePointTime>07:05</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=episode-601-the-blueprint-1;sub=thegame;prod=;sz=250x250;show=thegame;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;tile=4;ct=indivmediapage;loc=4;anum=5;ord=&lt;parameters.betord&gt;;prog=fullepisode</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                            <ka:cuePoint>
+                                <ka:cuePointTime>07:05</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=episode-601-the-blueprint-1;sub=thegame;prod=;sz=250x250;show=thegame;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;tile=4;ct=indivmediapage;loc=4;anum=6;ord=&lt;parameters.betord&gt;;prog=fullepisode</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                
+                            <ka:cuePoint>
+                                <ka:cuePointTime>17:58</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=episode-601-the-blueprint-1;sub=thegame;prod=;sz=250x250;show=thegame;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;tile=4;ct=indivmediapage;loc=4;anum=7;ord=&lt;parameters.betord&gt;;prog=fullepisode</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                            <ka:cuePoint>
+                                <ka:cuePointTime>17:58</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=episode-601-the-blueprint-1;sub=thegame;prod=;sz=250x250;show=thegame;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;tile=4;ct=indivmediapage;loc=4;anum=8;ord=&lt;parameters.betord&gt;;prog=fullepisode</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                
+            
+                        <ka:cuePoint>
+                            <ka:cuePointTime>21:03</ka:cuePointTime>
+                            <ka:cuePointData>
+                                <type>ad</type>
+                                <format>VAST 2.0</format>
+                                <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=episode-601-the-blueprint-1;sub=thegame;prod=;sz=250x250;show=thegame;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;tile=4;ct=indivmediapage;loc=4;anum=9;ord=&lt;parameters.betord&gt;;prog=fullepisode</uri>
+                            </ka:cuePointData>
+                        </ka:cuePoint>
+               
+                        <ka:cuePoint>
+                            <ka:cuePointTime>21:03</ka:cuePointTime>
+                            <ka:cuePointData>
+                                <type>ad</type>
+                                <format>VAST 2.0</format>
+                                <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=episode-601-the-blueprint-1;sub=thegame;prod=;sz=250x250;show=thegame;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;tile=4;ct=indivmediapage;loc=4;anum=10;ord=&lt;parameters.betord&gt;;prog=fullepisode</uri>
+                            </ka:cuePointData>
+                        </ka:cuePoint>
+               
+            -->
+            </ka:cuePoints>
+             
+            <media:scenes>
+                                
+                <media:scene>
+                    
+                    <sceneTitle>Segment 1</sceneTitle>
+                    <sceneStartTime>00:00</sceneStartTime>
+                    <sceneEndTime>01:38</sceneEndTime>
+                    <ka:sceneStartMarker>true</ka:sceneStartMarker>
+                    <ka:sceneUri>http://qastatic.kicktest.com/kickFlash/html5/mrss/mp4_fulleps_clip1.smil</ka:sceneUri>
+                    <ka:sceneUriHTML5>http://qastatic.kicktest.com/kickFlash/html5/mrss/m3u8_fulleps_clip1.smil</ka:sceneUriHTML5>
+                </media:scene>
+                                
+                <media:scene>
+                    
+                    <sceneTitle>Segment 2</sceneTitle>
+                    <sceneStartTime>01:38</sceneStartTime>
+                    <sceneEndTime>09:30</sceneEndTime>
+                    <ka:sceneStartMarker>true</ka:sceneStartMarker>
+                    <ka:sceneUri>http://qastatic.kicktest.com/kickFlash/html5/mrss/mp4_fulleps_clip2.smil</ka:sceneUri>
+                    <ka:sceneUriHTML5>http://qastatic.kicktest.com/kickFlash/html5/mrss/m3u8_fulleps_clip2.smil</ka:sceneUriHTML5>
+                </media:scene>
+                                
+                <media:scene>
+                    
+                    <sceneTitle>Segment 3</sceneTitle>
+                    <sceneStartTime>09:30</sceneStartTime>
+                    <sceneEndTime>17:58</sceneEndTime>
+                    <ka:sceneStartMarker>true</ka:sceneStartMarker>
+                    <ka:sceneUri>http://qastatic.kicktest.com/kickFlash/html5/mrss/mp4_fulleps_clip3.smil</ka:sceneUri>
+                    <ka:sceneUriHTML5>http://qastatic.kicktest.com/kickFlash/html5/mrss/m3u8_fulleps_clip3.smil</ka:sceneUriHTML5>
+                </media:scene>
+                
+            </media:scenes>
+           
+            <media:content type="application/smil+xml" medium="video">
+            
+                <media:thumbnail url="http://www.bet.com/content/dam/betcom/images/2013/04/Shows/The-Game/cgam13100.jpg"/>
+            </media:content>
+            
+        </item>
+        
+    </channel>
+</rss

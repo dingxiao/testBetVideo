@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<smil>
+    <head><meta base="https://cp162205-f.akamaihd.net/i/"/>
+    </head>
+    <body>
+        <switch>
+            <video src="videohub/thegame/2013/betcom_cgam13104_act2_cc_,448x252_450,.mp4.csmil/master.m3u8?hdnea=st=1366064066~exp=1366064366~acl=/*~hmac=ca26f99de9c3323bc889696093a5a7b091d356926dd1de8b50689f0468f6887b"  system-bitrate="450000"/>
+            <video src="videohub/thegame/2013/betcom_cgam13104_act2_cc_,624x352_800,.mp4.csmil/master.m3u8?hdnea=st=1366064066~exp=1366064366~acl=/*~hmac=ca26f99de9c3323bc889696093a5a7b091d356926dd1de8b50689f0468f6887b"  system-bitrate="800000"/>
+            <video src="videohub/thegame/2013/betcom_cgam13104_act2_cc_,640x360_1200,.mp4.csmil/master.m3u8?hdnea=st=1366064066~exp=1366064366~acl=/*~hmac=ca26f99de9c3323bc889696093a5a7b091d356926dd1de8b50689f0468f6887b"  system-bitrate="1200000"/>
+            <video src="videohub/thegame/2013/betcom_cgam13104_act2_cc_,640x360_1800,.mp4.csmil/master.m3u8?hdnea=st=1366064066~exp=1366064366~acl=/*~hmac=ca26f99de9c3323bc889696093a5a7b091d356926dd1de8b50689f0468f6887b"  system-bitrate="1800000"/>
+            <video src="videohub/thegame/2013/betcom_cgam13104_act2_cc_,1280x720_2600,.mp4.csmil/master.m3u8?hdnea=st=1366064066~exp=1366064366~acl=/*~hmac=ca26f99de9c3323bc889696093a5a7b091d356926dd1de8b50689f0468f6887b"  system-bitrate="2600000"/>
+        </switch>	
+    </body>
+</smil>

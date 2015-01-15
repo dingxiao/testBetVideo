@@ -1,0 +1,17 @@
+# Please add IDE-specific files (e.g. .*.sw* from Vim or .idea from IntelliJ)
+# to your global config. They do not belong in the project gitignore file.
+# If you don't have one set up already, you can create it using 
+# "git config --global core.excludesfile ~/.gitignore"
+
+# Maven
+/target/
+/app-archetype/target/
+/db/target/
+/docs/documentation/_site/*
+/tool-ui/target/
+/overlays/
+/src/main/webapp/assets/style/css/*
+.settings/*
+.project
+.classpath
+

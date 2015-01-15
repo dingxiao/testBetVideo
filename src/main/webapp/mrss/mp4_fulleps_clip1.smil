@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<smil>
+    <head><meta base="rtmp://cp14305.edgefcs.net/ondemand"/>
+    </head>
+    <body>
+        <switch>
+            <video src="mp4:14305/videohub/thegame/2013/betcom_cgam13104_act1_cc_448x252_450.mp4"  system-bitrate="450000"/>
+            <video src="mp4:14305/videohub/thegame/2013/betcom_cgam13104_act1_cc_624x352_800.mp4"  system-bitrate="800000"/>
+            <video src="mp4:14305/videohub/thegame/2013/betcom_cgam13104_act1_cc_640x360_1200.mp4"  system-bitrate="1200000"/>
+            <video src="mp4:14305/videohub/thegame/2013/betcom_cgam13104_act1_cc_640x360_1800.mp4"  system-bitrate="1800000"/>
+            <video src="mp4:14305/videohub/thegame/2013/betcom_cgam13104_act1_cc_1280x720_2600.mp4"  system-bitrate="2600000"/>
+        </switch>
+    </body>
+</smil>

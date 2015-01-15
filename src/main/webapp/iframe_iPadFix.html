@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HTML5 Widget</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://s0.2mdn.net/instream/html5/ima3.js"></script>
+    <script src="http://www.bet.com/etc/designs/betcom/kickapps/s_code.js"></script>
+    <script>
+        document.write(unescape("%3Cscript src='" +
+                (document.location.protocol == "https:" ? "https://sb" : "http://b") +
+                ".scorecardresearch.com/beacon.js' %3E%3C/script%3E"));
+    </script>
+    <style type="text/css" media="all">
+        html, body { margin: 0; padding: 0; border: 0; }
+        body {
+            overflow: hidden;
+            -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+            left:0;
+            right:0;
+            top:0;
+            bottom:0;
+        }
+
+        #mainContainer {
+            overflow:hidden;
+            position: absolute;
+            left:0;
+            right:0;
+            top:0;
+            bottom:0;
+
+        }
+
+        #content, #adContainer {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+        }
+
+        #largePlay{
+            background:url(http://appassets.kickstatic.com/176704/images/large_play_arrow.png?timestamp=1310609614329) no-repeat;
+            width: 110px;
+            height: 120px;
+            z-index: 100;
+        }
+
+    </style>
+
+</head>
+<body>
+<div id="mainContainer">
+    <div id="content">
+        <div id="largePlay" class="className" > </div>
+        <video id="contentElement" style="width:100%; height:100%;"/>
+
+    </div>
+
+    <div id="adContainer">
+    </div>
+
+</div>
+
+<script type="text/javascript">
+
+var mainContainer = document.getElementById('mainContainer');
+
+var query = {},
+        queryNameVals = window.location.search.substring(1).split("&amp;").join("&").split("&");
+for (var i=0; i<queryNameVals.length; i++){
+    var queryNameVal = queryNameVals[i].split("=");
+    query[queryNameVal[0]] = queryNameVal[1];
+    //console.log( "param: " + queryNameVal[0] + " = " + queryNameVal[1] );
+}
+
+var BrowserUtils = {},
+        ub = BrowserUtils,
+        ua = navigator.userAgent;
+ub.isWebkit = ua.indexOf("WebKit") !== -1;
+ub.isChrome = ua.indexOf("Chrome") !== -1;
+ub.isIpad = ua.indexOf("iPad") !== -1;
+ub.isIphone = ua.indexOf("iPhone") !== -1;
+ub.isAndroid = ua.indexOf("Android") !== -1;
+ub.isUIWebView = /(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/i.test(ua)
+ub.isDesktopWebkit = ub.isWebkit && !ub.isIpad && !ub.isIphone;
+console.log(ua);
+
+var videoURL = unescape(query.video);
+var adURL = unescape(query.adTag);
+var posterURL = unescape(query.poster);
+
+var adsManager;
+var adsLoader;
+var adDisplayContainer;
+var intervalTimer;
+
+var autoPlay = query.autoPlay == "true";
+var adPlaying = false;
+
+var videoContent = document.getElementById('contentElement');
+
+var contentInitialized = false;
+var adsLoaded = false;
+
+function createAdDisplayContainer() {
+    // We assume the adContainer is the DOM id of the element that will house
+    // the ads.
+
+    if(BrowserUtils.isIphone || BrowserUtils.isAndroid )
+    {
+        adDisplayContainer =
+                new google.ima.AdDisplayContainer(document.getElementById('mainContainer'), document.getElementById('contentElement'), document.getElementById('adContainer'));
+    }
+    else
+    {
+        adDisplayContainer =
+                new google.ima.AdDisplayContainer(document.getElementById('adContainer'));
+    }
+
+}
+
+window.requestAds = function () {
+    if(BrowserUtils.isIpad)
+    {
+        videoContent.play();
+        videoContent.pause();
+    }
+
+    // Create the ad display container.
+    createAdDisplayContainer();
+    // Initialize the container, if requestAds is invoked in a user action.
+    // This is only needed on iOS/Android devices.
+    adDisplayContainer.initialize();
+    // Create ads loader.
+    adsLoader = new google.ima.AdsLoader(adDisplayContainer);
+    // Listen and respond to ads loaded and error events.
+    adsLoader.addEventListener(
+            google.ima.AdsManagerLoadedEvent.Type.ADS_MANAGER_LOADED,
+            onAdsManagerLoaded,
+            false);
+    adsLoader.addEventListener(
+            google.ima.AdErrorEvent.Type.AD_ERROR,
+            onAdError,
+            false);
+
+    // Request video ads.
+    var adsRequest = new google.ima.AdsRequest();
+    adsRequest.adTagUrl = adURL;
+
+    // Specify the linear and nonlinear slot sizes. This helps the SDK to
+    // select the correct creative if multiple are returned.
+    adsRequest.linearAdSlotWidth = document.width;
+    adsRequest.linearAdSlotHeight = document.height;
+
+    adsRequest.nonLinearAdSlotWidth = 640;
+    adsRequest.nonLinearAdSlotHeight = 150;
+
+    adsLoader.requestAds(adsRequest);
+
+    if( BrowserUtils.isIpad )
+    {
+        initializeContent();
+    }
+    else if( BrowserUtils.isAndroid )
+    {
+        contentInitialized = true;
+    }
+}
+
+function initializeContent() {
+    var videoElement = document.getElementById('contentElement');
+    videoElement.src = videoURL;
+    var onMetaData = function() {
+        videoElement.removeEventListener( 'loadedmetadata', onMetaData );
+        console.log("loadedmetadata. adsLoaded = " + adsLoaded);
+        console.log("loadedmetadata. adsManager = " + adsManager);
+        contentInitialized = true;
+        if (adsLoaded && adsManager) {
+            adsManager.init(document.width, document.height, google.ima.ViewMode.NORMAL);
+            // Call play to start showing the ad. Single video and overlay ads will
+            // start at this time; the call will be ignored for ad rules.
+            adsManager.start();
+        }
+    };
+    videoElement.addEventListener( 'loadedmetadata', onMetaData );
+    videoElement.load();
+}
+
+function onAdsManagerLoaded(adsManagerLoadedEvent) {
+    // Get the ads manager.
+    adsManager = adsManagerLoadedEvent.getAdsManager(
+            videoContent);  // should be set to the content video element
+
+    // Add listeners to the required events.
+    adsManager.addEventListener(
+            google.ima.AdErrorEvent.Type.AD_ERROR,
+            onAdError);
+    adsManager.addEventListener(
+            google.ima.AdEvent.Type.CONTENT_PAUSE_REQUESTED,
+            onContentPauseRequested);
+    adsManager.addEventListener(
+            google.ima.AdEvent.Type.CONTENT_RESUME_REQUESTED,
+            onContentResumeRequested);
+    adsManager.addEventListener(
+            google.ima.AdEvent.Type.ALL_ADS_COMPLETED,
+            onAdEvent);
+
+    // Listen to any additional events, if necessary.
+    adsManager.addEventListener(
+            google.ima.AdEvent.Type.LOADED,
+            onAdEvent);
+    adsManager.addEventListener(
+            google.ima.AdEvent.Type.STARTED,
+            onAdEvent);
+    adsManager.addEventListener(
+            google.ima.AdEvent.Type.COMPLETE,
+            onAdEvent);
+    adsManager.addEventListener(
+            google.ima.AdEvent.Type.PAUSED,
+            onAdPaused);
+
+    try {
+        console.log("onAdsManagerLoaded. contentInitialized = " + contentInitialized);
+
+        adsLoaded = true;
+        if ( contentInitialized ) {
+            adsManager.init(document.width, document.height, google.ima.ViewMode.NORMAL);
+            adsManager.start();
+        }
+    } catch (adError) {
+        console.log("AD ERROR: " + adError);
+        // An error may be thrown if there was a problem with the VAST response.
+    }
+}
+
+function onAdPaused(adEvent){
+    $('#largePlay').show();
+}
+function onAdEvent(adEvent) {
+    // Retrieve the ad from the event. Some events (e.g. ALL_ADS_COMPLETED)
+    // don't have ad object associated.
+    var ad = adEvent.getAd();
+
+    switch (adEvent.type) {
+        case google.ima.AdEvent.Type.LOADED:
+            // This is the first event sent for an ad - it is possible to
+            // determine whether the ad is a video ad or an overlay.
+            if (!ad.isLinear()) {
+                // Position AdDisplayContainer correctly for overlay.
+                // Use ad.width and ad.height.
+            }
+            break;
+        case google.ima.AdEvent.Type.STARTED:
+            // This event indicates the ad has started - the video player
+            // can adjust the UI, for example display a pause button and
+            // remaining time.
+            if (ad.isLinear()) {
+
+                COMSCORE.beacon({
+                    c1:1,
+                    c2:"6035012",
+                    c5:"01"
+                })
+                // For a linear ad, a timer can be started to poll for
+                // the remaining time.
+                $('#largePlay').hide();
+                adPlaying = true;
+                intervalTimer = setInterval(
+                        function() {
+                            var remainingTime = adsManager.getRemainingTime();
+                        },
+                        300); // every 300ms
+            }
+            break;
+        case google.ima.AdEvent.Type.COMPLETE:
+            // This event indicates the ad has finished - the video player
+            // can perform appropriate UI actions, such as removing the timer for
+            // remaining time detection.
+            if (ad.isLinear()) {
+                clearInterval(intervalTimer);
+                playContent()
+
+            }
+            break;
+    }
+}
+
+function onAdError(adErrorEvent) {
+    console.log("AD ERROR: " + adErrorEvent);
+    playContent()
+}
+
+function onContentPauseRequested() {
+    videoContent.pause();
+    // This function is where you should setup UI for showing ads (e.g.
+    // display ad timer countdown, disable seeking etc.)
+    // setupUIForAds();
+}
+
+function onContentResumeRequested() {
+    videoContent.play();
+    // This function is where you should ensure that your UI is ready
+    // to play content. It is the responsibility of the Publisher to
+    // implement this function when necessary.
+    // setupUIForContent();
+
+}
+
+
+function playContent(){
+    if(BrowserUtils.isIphone || BrowserUtils.isAndroid)
+    {
+        videoContent.addEventListener('loadedmetadata',playerHandler,false);
+        videoContent.addEventListener('play',playerHandler,false);
+        videoContent.addEventListener('pause',playerHandler,false);
+        videoContent.addEventListener('ended',playerHandler,false);
+        videoContent.src = videoURL;
+    }
+
+    videoContent.play();
+    $(videoContent).attr( 'controls', 1 );
+    document.getElementById('content').style.zIndex=100;
+    $('#largePlay').hide();
+}
+
+//Kick off the ads request
+if(autoPlay){
+    if(adURL)
+    {
+        requestAds();
+    }
+    else
+    {
+        playContent();
+    }
+
+}
+else
+{
+    if(posterURL)
+    {
+        videoContent.poster = posterURL;
+    }
+}
+
+
+
+videoContent.src = videoURL;
+
+$('#content').resize(function(){
+
+    $('#largePlay').css({
+        position:'absolute',
+        left: ($('#content').width()/2 - $('#largePlay').outerWidth()/2),
+        top: ($('#content').height()/2 - $('#largePlay').outerHeight()/2)
+    });
+
+});
+
+// To initially run the function:
+$('#content').resize();
+
+if(BrowserUtils.isIphone || BrowserUtils.isAndroid)
+{
+    $('#largePlay').hide();
+    requestAds()
+}
+else
+{
+    videoContent.addEventListener('loadedmetadata',playerHandler,false);
+    videoContent.addEventListener('play',playerHandler,false);
+    videoContent.addEventListener('pause',playerHandler,false);
+    videoContent.addEventListener('ended',playerHandler,false);
+}
+
+$('#largePlay').click(function() {
+            if(!adPlaying)
+            {
+                window.requestAds();
+            }
+            else
+            {
+                adsManager.resume();
+                $('#largePlay').hide();
+            }
+        }
+)
+
+
+
+/*****
+ OMNITURE
+ *****/
+
+var mediaName;
+
+if(query.omnitureTracking)
+{
+    var customUrlVars = decodeURIComponent(query.omnitureTracking).split("&");
+
+    var customVarsKeysArray = [];
+    for (var x=0; x<customUrlVars.length; x++)
+    {
+        var keyValue = customUrlVars[x].split("=");
+        var key = keyValue[0]
+
+        if(key == "mediaName")
+        {
+            mediaName = keyValue[1]
+        }
+        else
+        {
+            customVarsKeysArray.push(key);
+            s[key] = keyValue[1];
+        }
+
+    }
+
+    s.Media.trackVars += "," + customVarsKeysArray.join(',');
+}
+
+var videoOpened = false;
+var currentTime = 0;
+
+function playerHandler(e){
+    // window.console.log(e);//video meta
+    //window.console.log(e.type);
+    if (videoContent.currentTime > 0) {
+        currentTime = videoContent.currentTime;
+    }
+    switch(e.type){
+        case 'play':
+            if(!videoOpened){
+                window.console.log('opened');
+                s.Media.open(mediaName, videoContent.duration, videoContent.src);
+                s.Media.play(mediaName, 0);
+                COMSCORE.beacon({
+                    c1:1,
+                    c2:"6035012",
+                    c5:"02"
+                })
+            }else{
+                window.console.log('play');
+                s.Media.play(mediaName, currentTime);
+            }
+            // alert('currentTime: ' + currentTime);
+            // alert('duration: ' + Math.floor(html5Player.duration));
+            // alert('videoPageName: ' + videoPageName);
+            videoOpened = true;
+            break;
+        case 'pause':
+            window.console.log('pause');
+            s.Media.stop(mediaName,currentTime);
+            break;
+        case 'ended':
+            window.console.log('ended');
+            s.Media.stop(mediaName,currentTime);
+            s.Media.close(mediaName);
+            break;
+        default:
+            break;
+    }
+}
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html>
+<!--
+
+?video=https://cp162205-f.akamaihd.net/i/videohub/thegame/2013/betcom_cgam13101_highlight1_cc_,448x252_450,624x352_800,640x360_1200,640x360_1800,1280x720_2600,.mp4.csmil/master.m3u8?hdnea=st=1364431214~exp=1364431514~acl=/*~hmac=ac71982fc7e9f01d13796dc5f87d389ca7487463a173bceb47dafd1aeb31ea45&adTag=http://ad.doubleclick.net/pfadx/bet.com/Video;n=episode-602-highlight-s1;sub=thegame;prod=;sz=250x250;show=thegame;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;tile=4;ct=indivmediapage;loc=4;anum=1;ord=&lt;parameters.betord&gt;;prog=clip&autoPlay=false&poster=http://www.bet.com/content/dam/betcom/images/2013/03/Shows/The-Game/cgam13101_highlight1.jpg&omnitureTracking=prop5=The+Game&eVar5=The+Game&prop6=unknown&eVar6=unknown&eVar17=parameters.eVar17&prop48=6&eVar48=6&prop49=2&eVar49=2&prop39=1TVClip&eVar39=1TVClip&prop45=unknown&eVar45=unknown&prop31=1&prop13=video&prop54=unknown&eVar54=unknown&prop55=03/26/13&eVar55=03/26/13&prop56=Highlights&eVar56=Highlights&prop57=Drama&eVar57=Drama&prop58=short&eVar58=short&mediaName=The+Game%3A+Highlights%3A+Not+So+Little+Boy+Blue
+-->
+
+    <head>
+    <title>HTML5 Widget</title>
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+   <script src="http://s0.2mdn.net/instream/html5/ima3.js"></script>
+   <script src="javascript/xml2json.js"></script>
+   <script src="javascript/CuePointManager.js"></script>
+   <script src="javascript/VastManager.js"></script>
+   <script src="javascript/MediaRSS.js"></script>
+   <script src="javascript/PlayListManager.js"></script>
+   <script src="javascript/ClosedCaptionManager.js"></script>
+ 	<script src="s_code.js"></script>
+	<script>
+	document.write(unescape("%3Cscript src='" +
+	(document.location.protocol == "https:" ? "https://sb" : "http://b") +
+	".scorecardresearch.com/beacon.js' %3E%3C/script%3E"));
+	</script>
+    <style type="text/css" media="all">
+        html, body { margin: 0; padding: 0; border: 0; }
+        body { 
+		overflow: hidden; 
+		-webkit-tap-highlight-color: rgba(255, 255, 255, 0); 
+		left:0;
+		right:0;
+		top:0;
+		bottom:0;
+		}
+
+		#mainContainer {
+		overflow:hidden;
+		position: absolute;
+		left:0;
+		right:0;
+		top:0;
+	   	bottom:0;
+
+		}
+
+		#content, #adContainer {
+		  position: absolute;
+		  top: 0px;
+		  left: 0px;
+		  width: 100%;
+		  height: 100%;
+		}
+
+		#largePlay{
+		    display:none;
+		    background:url(http://appassets.kickstatic.com/176704/images/large_play_arrow.png?timestamp=1310609614329) no-repeat;
+		  width: 110px;
+		  height: 120px;
+		  z-index: 100;
+		}
+
+		.closed-captions {
+			position:absolute;
+			bottom:10%;
+			z-index:32000;
+			padding-top:10px;
+			color:#fff;
+			background-color:rgba(0,0,0,0.75);
+			font:16px helvetica;
+			width:100%;
+			height:40px;
+			text-align:center;
+		}
+		
+		.closed-captions p {
+			margin:0; 
+			padding:0;
+		}
+    </style>
+  </head>
+  <body>
+	<div id="mainContainer">
+	  <div id="content">
+	      <div id="largePlay" class="className" > </div>
+	    <video autoplay="autoplay" controls="controls" id="contentElement" style="width:100%; height:100%;"/>
+
+	  </div>
+
+	  <div id="adContainer">
+	  </div>
+
+	</div>
+
+    <script type="text/javascript">
+        // testing commits ... nothing to see here.
+ 		var mainContainer = document.getElementById('mainContainer');
+ 		var cuePointManager, playlistManager, closedCaptionManager;
+        var proxyURL = "";//"http://cdnserve.a-feed.com/service/getHttpUrl.kickAction?urlLink=";
+		var shouldFetchSceneAfterAd = false;
+		var token;
+				
+        var query = {},
+            queryNameVals = window.location.search.substring(1).split("&amp;").join("&").split("&");
+        for (var i=0; i<queryNameVals.length; i++){
+            var queryNameVal = queryNameVals[i].split("=");
+            query[queryNameVal[0]] = queryNameVal[1];
+        }
+
+		var BrowserUtils = {},
+		    ub = BrowserUtils,
+		    ua = navigator.userAgent;
+		ub.isWebkit = ua.indexOf("WebKit") !== -1;
+		ub.isChrome = ua.indexOf("Chrome") !== -1;
+		ub.isIpad = ua.indexOf("iPad") !== -1;
+		ub.isIphone = ua.indexOf("iPhone") !== -1;
+		ub.isAndroid = ua.indexOf("Android") !== -1;
+		ub.isUIWebView = /(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/i.test(ua)
+		ub.isDesktopWebkit = ub.isWebkit && !ub.isIpad && !ub.isIphone;
+		console.log(ua)
+
+		var videoURL = null;
+		
+		var videoContent = document.getElementById('contentElement');
+		videoContent.addEventListener('loadedmetadata',playerHandler,false);
+		videoContent.addEventListener('play',playerHandler,false);
+		videoContent.addEventListener('pause',playerHandler,false);
+		//videoContent.addEventListener('ended',playerHandler,false);
+		videoContent.setAttribute("onended","playerHandler(event)");
+		
+        videoContent.onerror = function(event) {
+            console.log(event);
+        }
+        
+		if(query.hasOwnProperty("video")) {
+			videoURL = unescape(query.video);
+		    	var mrssURL = query.hasOwnProperty("mrss") ? query.mrss : "sample4.mrss";
+	            playlistManager = new PlayListManager(proxyURL + mrssURL,videoContent);//proxyURL + mrssURL);
+		} else {
+			$.getJSON(proxyURL + 'http://www.bet.com/videoplayer/jcr:content.token.json', function(data) {
+				token = data.token;
+				window.addEventListener("cuePointReached",onCuePointReached,false);
+		    	window.addEventListener("playlistReady",onPlaylistReady,false);
+		    	window.addEventListener("smilDataAvailable",onSMILDataAvailable,false);
+		   	 	window.addEventListener("endOfScenes", onEndOfScenes, false);
+		    	var mrssURL = query.hasOwnProperty("mrss") ? query.mrss : "sample4.mrss";
+	            playlistManager = new PlayListManager(proxyURL + mrssURL,videoContent);//proxyURL + mrssURL);
+			});				
+		}
+		
+		var adURL = unescape(query.adTag);
+		var posterURL = unescape(query.poster);
+
+		  var adsManager;
+		  var adsLoader;
+		  var adDisplayContainer;
+		  var intervalTimer;
+
+		var autoPlay = query.autoPlay == "true";
+		var adPlaying = false;
+
+
+		  function createAdDisplayContainer() {
+		    // We assume the adContainer is the DOM id of the element that will house
+		    // the ads.
+		
+			if(BrowserUtils.isIphone || BrowserUtils.isIpad || BrowserUtils.isAndroid)
+			{
+				adDisplayContainer =
+			        new google.ima.AdDisplayContainer(document.getElementById('mainContainer'), document.getElementById('contentElement'), document.getElementById('adContainer'));
+			}
+			else
+			{
+				adDisplayContainer =
+			        new google.ima.AdDisplayContainer(document.getElementById('adContainer'));
+			}
+
+		  }
+
+		  window.requestAds = function () {
+
+
+		    // Create the ad display container.
+		    createAdDisplayContainer();
+		    // Initialize the container, if requestAds is invoked in a user action.
+		    // This is only needed on iOS/Android devices.
+		    adDisplayContainer.initialize();
+		    // Create ads loader.
+		    adsLoader = new google.ima.AdsLoader(adDisplayContainer);
+		    // Listen and respond to ads loaded and error events.
+		    adsLoader.addEventListener(
+		        google.ima.AdsManagerLoadedEvent.Type.ADS_MANAGER_LOADED,
+		        onAdsManagerLoaded,
+		        false);
+		    adsLoader.addEventListener(
+		        google.ima.AdErrorEvent.Type.AD_ERROR,
+		        onAdError,
+		        false);
+
+		    // Request video ads.
+		    var adsRequest = new google.ima.AdsRequest();
+		    adsRequest.adTagUrl = adURL;
+
+		    // Specify the linear and nonlinear slot sizes. This helps the SDK to
+		    // select the correct creative if multiple are returned.
+		    adsRequest.linearAdSlotWidth = document.width;
+		    adsRequest.linearAdSlotHeight = document.height;
+
+		    adsRequest.nonLinearAdSlotWidth = 640;
+		    adsRequest.nonLinearAdSlotHeight = 150;
+
+		    adsLoader.requestAds(adsRequest);
+		  }
+
+		  function onAdsManagerLoaded(adsManagerLoadedEvent) {
+		    // Get the ads manager.
+		    adsManager = adsManagerLoadedEvent.getAdsManager(
+		        videoContent);  // should be set to the content video element
+
+		    // Add listeners to the required events.
+		    adsManager.addEventListener(
+		        google.ima.AdErrorEvent.Type.AD_ERROR,
+		        onAdError);
+		    adsManager.addEventListener(
+		        google.ima.AdEvent.Type.CONTENT_PAUSE_REQUESTED,
+		        onContentPauseRequested);
+		    adsManager.addEventListener(
+		        google.ima.AdEvent.Type.CONTENT_RESUME_REQUESTED,
+		        onContentResumeRequested);
+		    adsManager.addEventListener(
+		        google.ima.AdEvent.Type.ALL_ADS_COMPLETED,
+		        onAdEvent);
+
+		    // Listen to any additional events, if necessary.
+		    adsManager.addEventListener(
+		        google.ima.AdEvent.Type.LOADED,
+		        onAdEvent);
+		    adsManager.addEventListener(
+		        google.ima.AdEvent.Type.STARTED,
+		        onAdEvent);
+		    adsManager.addEventListener(
+		        google.ima.AdEvent.Type.COMPLETE,
+		        onAdEvent);
+		     adsManager.addEventListener(
+		        google.ima.AdEvent.Type.PAUSED,
+		        onAdPaused);
+
+		    try {
+		      // Initialize the ads manager. Ad rules playlist will start at this time.
+		      adsManager.init(document.width, document.height, google.ima.ViewMode.NORMAL);
+		      // Call play to start showing the ad. Single video and overlay ads will
+		      // start at this time; the call will be ignored for ad rules.
+		      adsManager.start();
+		    } catch (adError) {
+		      // An error may be thrown if there was a problem with the VAST response.
+		    }
+		  }
+
+		function onAdPaused(adEvent){
+		     $('#largePlay').show();
+		}
+		  function onAdEvent(adEvent) {
+		    // Retrieve the ad from the event. Some events (e.g. ALL_ADS_COMPLETED)
+		    // don't have ad object associated.
+		    var ad = adEvent.getAd();
+		    switch (adEvent.type) {
+		      case google.ima.AdEvent.Type.LOADED:
+		        // This is the first event sent for an ad - it is possible to
+		        // determine whether the ad is a video ad or an overlay.
+		        if (!ad.isLinear()) {
+		          // Position AdDisplayContainer correctly for overlay.
+		          // Use ad.width and ad.height.
+		        }
+		        break;
+		      case google.ima.AdEvent.Type.STARTED:
+		        // This event indicates the ad has started - the video player
+		        // can adjust the UI, for example display a pause button and
+		        // remaining time.
+		        if (ad.isLinear()) {
+
+					COMSCORE.beacon({
+						c1:1,
+						c2:"6035012",
+						c5:"01"
+					})
+		          // For a linear ad, a timer can be started to poll for
+		          // the remaining time.
+		            $('#largePlay').hide();
+		            adPlaying = true;
+		          intervalTimer = setInterval(
+		              function() {
+		                var remainingTime = adsManager.getRemainingTime();
+		              },
+		              300); // every 300ms
+		        }
+		        break;
+		      case google.ima.AdEvent.Type.COMPLETE:
+		        // This event indicates the ad has finished - the video player
+		        // can perform appropriate UI actions, such as removing the timer for
+		        // remaining time detection.
+		        if (ad.isLinear()) {
+		          clearInterval(intervalTimer);
+		playContent()
+
+		        }
+		        break;
+		    }
+		  }
+
+		  function onAdError(adErrorEvent) {
+		    // Handle the error logging.
+		    console.log(adErrorEvent.getError());
+			playContent()
+		  }
+
+		  function onContentPauseRequested() {
+		    videoContent.pause();
+		    // This function is where you should setup UI for showing ads (e.g.
+		    // display ad timer countdown, disable seeking etc.)
+		    // setupUIForAds();
+		  }
+
+		  function onContentResumeRequested() {
+		    videoContent.play();
+		    // This function is where you should ensure that your UI is ready
+		    // to play content. It is the responsibility of the Publisher to
+		    // implement this function when necessary.
+		    // setupUIForContent();
+
+		  }
+
+		
+		function playContent(){
+		        if(videoURL === null) {
+		            return;
+		        }
+		        // TODO: why does it matter? without below, will not play video, only play ad
+				if(BrowserUtils.isIphone || BrowserUtils.isIpad || BrowserUtils.isAndroid)
+				{
+				
+					videoContent.addEventListener('loadedmetadata',playerHandler,false);
+					videoContent.addEventListener('play',playerHandler,false);
+					videoContent.addEventListener('pause',playerHandler,false);
+					videoContent.addEventListener('ended',playerHandler,false);
+					videoContent.src = videoURL;
+					
+					//videoContent.currentTime = currentTime;
+				}
+
+	            videoContent.play();
+				$(videoContent).attr( 'controls', 1 );
+	            document.getElementById('content').style.zIndex=100;
+	            $('#largePlay').hide();
+		}
+
+		  //Kick off the ads request
+		if(autoPlay){
+			if(adURL)
+			{
+				requestAds();
+			}
+			else
+			{
+				playContent();
+			}
+				
+		}
+		else
+		{
+			if(posterURL)
+			{
+				videoContent.poster = posterURL;
+			}
+		}
+		  
+		 
+		
+		videoContent.src = videoURL;
+
+		$('#content').resize(function(){
+
+			$('#largePlay').css({
+				position:'absolute',
+				left: ($('#content').width()/2 - $('#largePlay').outerWidth()/2),
+				top: ($('#content').height()/2 - $('#largePlay').outerHeight()/2)
+			});
+
+		});
+
+		// To initially run the function:
+		$('#content').resize();
+
+		if(BrowserUtils.isIphone || BrowserUtils.isIpad || BrowserUtils.isAndroid)
+		{
+			if(BrowserUtils.isIphone || BrowserUtils.isAndroid)
+				$('#largePlay').hide();
+			
+			requestAds()
+		}
+		else
+		{
+			videoContent.addEventListener('loadedmetadata',playerHandler,false);
+			videoContent.addEventListener('play',playerHandler,false);
+			videoContent.addEventListener('pause',playerHandler,false);
+			//videoContent.addEventListener('ended',playerHandler,false);
+			   
+		}
+		
+		$('#largePlay').click(function() {
+
+		    if(!adPlaying)
+		    {
+				if(BrowserUtils.isIpad)
+					videoContent.play();
+				else
+		        	window.requestAds();
+		    }
+		    else
+		    {
+		        adsManager.resume();
+		        $('#largePlay').hide();
+		    }
+		}
+		 )
+		
+		
+		
+		/*****
+		OMNITURE
+		*****/
+		
+		var mediaName;
+		
+		
+		function doOmnitureTracking(customUrlVars) {
+			var customVarsKeysArray = [];
+			for (var x=0; x<customUrlVars.length; x++)
+			{
+				var keyValue = customUrlVars[x].split("=");
+				var key = keyValue[0]
+				
+				if(key == "mediaName")
+				{
+					mediaName = keyValue[1]
+				}
+				else 
+				{
+					customVarsKeysArray.push(key);
+					s[key] = keyValue[1];
+				}
+
+			}
+
+			s.Media.trackVars += "," + customVarsKeysArray.join(',');
+		}
+		
+		if(query.omnitureTracking)
+		{
+		    doOmnitureTracking(decodeURIComponent(query.omnitureTracking).split("&"));
+		}
+
+		    var videoOpened = false;
+		    var currentTime = 0;
+
+		    function playerHandler(e){
+		        // window.console.log(e);//video meta
+		        //window.console.log(e.type);
+		        if (videoContent.currentTime > 0) {
+		            currentTime = videoContent.currentTime;
+		        }
+		        switch(e.type){
+		            case "timeupdate":
+		                /*
+		                if(videoContent.getAttribute("data-content-type") === "feature") {
+		                    console.log("resume time is " + (videoContent.resumeTime || 0.1));
+		                    videoContent.currentTime = videoContent.resumeTime || 0.1;
+		                    videoContent.removeEventListener("timeupdate",playerHandler);
+		                }	
+		                */
+		                break;
+		            case 'loadedmetadata':
+		                break;
+		            case 'play':
+		                if(!videoOpened){
+		                    window.console.log('opened');
+		                    s.Media.open(mediaName, videoContent.duration, videoContent.src);
+		                    s.Media.play(mediaName, 0);
+							COMSCORE.beacon({
+								c1:1,
+								c2:"6035012",
+								c5:"02"
+							})
+		                }else{
+		                    window.console.log('play');
+		                    s.Media.play(mediaName, currentTime);
+		                }
+		                // alert('currentTime: ' + currentTime);
+		                // alert('duration: ' + Math.floor(html5Player.duration));
+		                // alert('videoPageName: ' + videoPageName);
+		                videoOpened = true;
+		            	break;
+		            case 'pause':
+		                window.console.log('pause');
+		                s.Media.stop(mediaName,currentTime);
+		            	break;
+		            case 'ended':
+		                window.console.log('ended');
+		                s.Media.stop(mediaName,currentTime);
+		                s.Media.close(mediaName);
+		                switch(videoContent.getAttribute("data-content-type")) {
+		                	case "ad":
+		                		console.log("ad ended!");
+		                		videoContent.setAttribute("controls","controls");
+		                    	videoContent.setAttribute("data-content-type","feature");
+		                    	videoContent.src = playlistManager.sources[playlistManager.playlistIndex].src + token;//mrss.smil.sources[0].src;
+		                    	videoContent.play();
+		                    	if(videoContent.activeCuepoint) {
+		                    		try {
+		                        		videoContent.activeCuepoint.vast.removeListeners();
+                                		videoContent.activeCuePoint = null;
+                                	} catch(err) {
+                                		console.log("Unable to remove cue point listeners: " + err.message);
+                                	}
+                            	}
+                            	
+                            	if(shouldFetchSceneAfterAd) {
+                            		shouldFetchSceneAfterAd = false;
+                            		doFetchScene();
+                            	}
+                            	
+		                		break;
+		                	default:
+		                		console.log("feature ended!");
+		                		doFetchScene();
+		                		break;
+		                }
+		            	break;
+		            default:
+		            	break;
+		        }
+		    }
+		
+		function doFetchScene() {
+		    if (playlistManager)
+                        console.log("fetching data for scene " +  " playlistManager exit");
+	            else{
+                        console.log("fetching data for scene " +  " playlistManager does not exit");
+	                return;
+	            }
+		    if (playlistManager.sceneIndex)
+                       console.log("fetching data for scene "  + " playlistManager.sceneIndex exist");
+                    else
+                       console.log("fetching data for scene "  + " playlistManager.sceneIndex does not exist");
+
+			playlistManager.sceneIndex++;
+		    console.log("fetching data for scene " + playlistManager.sceneIndex + " ...");
+		    playlistManager.videos[playlistManager.playlistIndex].fetchSMILForScene(playlistManager.sceneIndex);
+		}
+
+        function onMRSSDataAvailable(event) {
+            videoURL = mrss.smil.sources[0].src; // TODO - bandwidth sniff based on bitrate property?
+            cuePointManager = new CuePointManager(videoContent,mrss.cuePoints);
+            playContent();
+        };
+        
+        function onPlaylistReady(event) {
+            //var uri = playlistManager.videos[playlistManager.playlistIndex].scenes[playlistManager.sceneIndex].uri;
+            closedCaptionManager = new ClosedCaptionManager(proxyURL + playlistManager.videos[playlistManager.playlistIndex].closedCaptionURI, videoContent);
+            playlistManager.videos[playlistManager.playlistIndex].fetchSMILForScene(playlistManager.sceneIndex);
+            videoContent.setAttribute("poster",playlistManager.videos[playlistManager.playlistIndex].thumbnail);
+            var omniture = playlistManager.videos[playlistManager.playlistIndex].omnitureTracking;
+            if(omniture) {
+                doOmnitureTracking(decodeURIComponent(omniture).split("&"));
+            }
+            cuePointManager = new CuePointManager(videoContent,playlistManager.videos[playlistManager.playlistIndex].cuePoints);
+        };
+        
+        function onSMILDataAvailable(event) {
+            console.info("smil event: ", event.data.smil.sources);
+            playlistManager.sources = event.data.smil.sources;
+            videoURL = event.data.smil.sources[0].src;//playlistManager.sources[playlistManager.playlistIndex].src;
+            if(videoURL.indexOf("?") > -1) {
+            	videoURL += "&" + token;
+            } else {
+            	videoURL += "?" + token;
+            }
+            videoContent.src = videoURL;
+            videoContent.load();
+            videoContent.play();
+            //playlistManager.sceneIndex++;
+            //playContent();
+        };
+        
+        function onCuePointReached(event) {
+            try {
+                console.info("cuepoint event:",event.data.cuePoint.data);
+                videoContent.removeAttribute("controls");
+                videoContent.resumeTime = +(videoContent.currentTime.toFixed(1));
+                var adSrc = event.data.cuePoint.vast.creatives[0].mediaFile.src;
+                if(adSrc.indexOf(".flv") > -1) {
+                    console.log("Ad is an FLV. setting a default mp4 ad.");
+                	adSrc = "http://a1704.g.akamai.net/7/1704/3574/v001/betint.download.akamai.com/3576/media/video/flash/ads/preroll_16x9_coke_15s_titled_2013.mp4";
+                }
+                videoContent.setAttribute("data-content-type","ad");
+                videoContent.activeCuepoint = event.data.cuePoint;
+                videoContent.src = adSrc;
+                videoContent.play();
+                
+                if(event.data.cuePoint.timeInSeconds > 0) {
+                	// assume this is a post-roll on a scene
+                	shouldFetchSceneAfterAd = true;
+                }
+            } catch(err) {
+                console.log("onCuePointReached error: " + err.message);
+            }
+
+        };
+        
+        function onEndOfScenes(event) {
+        	location.reload();
+        };
+        
+        //(function(s){s.src='http://jsconsole.com/inject.js';document.body.appendChild(s)})(document.createElement('script'))
+    </script>
+  </body>
+</html>

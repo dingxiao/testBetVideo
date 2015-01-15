@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<smil>
+    <head><meta base=""/>
+    </head>
+    <body>
+        <switch>
+            <video src="horrible-bosses.mp4"  system-bitrate="450000"/>
+            
+        </switch>
+    </body>
+</smil>

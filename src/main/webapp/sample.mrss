@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+
+
+
+
+
+
+
+
+
+     
+    
+    
+
+
+
+
+<rss version="2.0"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:media="http://search.yahoo.com/mrss/"
+    xmlns:ka="http://kickapps.com/karss">
+    <channel>
+        <title>The Real Hosts of  106   &#8212;  Turn Up!</title>
+        <link>http://www.bet.com/content/betcom/video/106andpark/highlights/the-real-hosts-of-106-106-and-park-3151/_jcr_content/leftcol/videoplayer.mrss</link>
+        <description>Check out some behind-the-scenes drama between some of the new hosts of 106 &amp; Park.</description>
+        <pubDate>Thu, 28 Mar 2013 00:16:00 GMT</pubDate>
+        <dc:date>2013-03-28T00:16:00Z</dc:date>
+        
+        <item>
+            <title>The Real Hosts of  106   &#8212;  Turn Up!</title>
+            <link>http://www.bet.com/video/106andpark/highlights/the-real-hosts-of-106-106-and-park-3151.html</link>
+            <playlistMrssUrl>http%3A%2F%2Fwww.bet.com%2Fcontent%2Fbetcom%2Fvideo%2F106andpark%2Fhighlights%2Fthe-real-hosts-of-106-106-and-park-3151%2F_jcr_content%2Fleftcol%2Fvideoplayer.videoplaylistmrss.mrss%3Fpt%3DEmbedFullPage%26type%3Dembedfullpage%26ordts%3Dy</playlistMrssUrl>
+            
+            <description>Check out some behind-the-scenes drama between some of the new hosts of 106 &amp; Park.</description>
+            <pubDate>Thu, 28 Mar 2013 00:16:00 GMT</pubDate>
+            <guid>94469df0-75c9-407d-9aef-f186e19a5594</guid>
+            <dc:creator>admin</dc:creator>
+            <dc:date>2013-03-28T00:16:00Z</dc:date>
+            <ka:omnitureTracking><![CDATA[prop5=106+%26+Park&eVar5=106+%26+Park&prop6=unknown&eVar6=unknown&eVar17=parameters.eVar17&prop48=2013&eVar48=2013&prop49=unknown&eVar49=unknown&prop39=1TVClip&eVar39=1TVClip&prop45=FullPage&eVar45=FullPage&prop31=1&prop13=video&prop54=unknown&eVar54=unknown&prop55=03/27/13&eVar55=03/27/13&prop56=Highlights&eVar56=Highlights&prop57=unknown&eVar57=unknown&prop58=short&eVar58=short&mediaName=106+%26+Park%3A+Highlights%3A+The+Real+Hosts+of+106+%E2%80%94+Turn+Up%21]]></ka:omnitureTracking>
+            
+            
+                <ka:cuePoints>               
+             
+                        <ka:cuePoint>
+                            <ka:cuePointTime>0</ka:cuePointTime>
+                            <ka:cuePointData>
+                                <type>ad</type>
+                                <format>VAST 2.0</format>
+                                <uri>vast-withWrapper.xml</uri>
+                            </ka:cuePointData>
+                        </ka:cuePoint>
+               
+                        <ka:cuePoint>
+                            <ka:cuePointTime>0:30</ka:cuePointTime>
+                            <ka:cuePointData>
+                                <type>ad</type>
+                                <format>VAST 2.0</format>
+                                <uri>vast-withWrapper.xml</uri>
+                            </ka:cuePointData>
+                        </ka:cuePoint>
+               
+                                <ka:cuePoint>
+                                    <ka:cuePointTime>02:28</ka:cuePointTime>
+                                    <ka:cuePointData>
+                                        <type>ad</type>
+                                        <format>VAST 2.0</format>
+                                        <uri>vast-withWrapper.xml</uri>
+                                    </ka:cuePointData>
+                                </ka:cuePoint>
+                         
+                </ka:cuePoints>
+             
+                    <media:content type="application/smil+xml" medium="video" url="http://www.bet.com/content/betcom/video/106andpark/highlights/the-real-hosts-of-106-106-and-park-3151/_jcr_content/leftcol/videoplayer/clip1.smil" duration="131">
+                        <media:description>Check out some behind-the-scenes drama between some of the new hosts of 106 &amp; Park.</media:description>
+                        <media:thumbnail url="http://www.bet.com/content/dam/betcom/images/2013/03/Shows/106-and-Park-03-21-03-31/b106133151_therealhosts.jpg"/>
+                        <media:title>The Real Hosts of  106   &#8212;  Turn Up!</media:title>
+                   </media:content>
+              
+        </item>
+        
+    </channel>
+</rss> 

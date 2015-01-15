@@ -1,0 +1,123 @@
+
+<!-- Put both of these <script> tags in your <header> though they will still work in the <body>. -->
+<!-- This first <script> only needs to be on the page once even if you have multiple widgets. -->
+<script type="text/javascript" src="http://serve.a-widget.com/kickFlash/scripts/swfobject2.js"></script>
+<script type="text/javascript">
+   var flashvars = {affiliateSiteId:"30483", widgetId:"350449", width:"420", height:"330", revision:"0"};
+   var params = {menu:"false", allowfullscreen:"true", allowscriptaccess:"always", wmode:"transparent"};
+   var attributes = {id:"kickWidget_30483_350449", name:"kickWidget_30483_350449"};
+   var expressInstallURL = "http://serve.a-widget.com/kickFlash/scripts/expressInstall2.swf";
+   var swfURL = "http://serve.a-widget.com/service/getWidgetSwf.kickAction";
+   swfobject.embedSWF(swfURL, "altContentDiv", "420", "330", "9.0.28", expressInstallURL, flashvars, params, attributes);
+</script>
+
+<!-- Put this <div> anywhere in the <body> of your page where you want the widget to show up. -->
+<div id="altContentDiv">
+   <!-- Put alternate content here for when the user doesn't have flash or javascript and for SEO purposes. -->
+
+	<!-- http://serve.a-widget.com/service/getWidget.kickAction?widgetId=350449&as=30483&revision=0 -->
+	
+	<div class="result"></div>
+	
+	
+	<video width="640" height="360" poster="__POSTER__.JPG" controls autoplay>
+		<source src="http://api.kickapps.com/rest/resource/VIDEO/995207/30483" type="video/mp4"><!-- Safari / iPhone video    --></source>
+	</video>
+	
+</div>
+
+
+<a href="javascript:playPause();">Play/Pause</a> <br>
+
+<a href="javascript:makeBig();">2x Size</a> |
+
+<a href="javascript:makeNormal();">1x Size</a> <br>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+
+<script type="text/javascript">
+	var TEMP = {};
+	
+	
+	(function() {
+		// var widgetJsonURI = "http://serve.a-widget.com/service/getWidget.kickAction?revision=0&widgetId="+flashvars.widgetId+"&as="+flashvars.affiliateSiteId;
+		
+		
+		// jQuery.get(widgetJsonURI, function(data) {
+		// 	var widgetJsonObj = eval("(" + data['widgetJson'] + ")");
+		// 	
+		// 	// jQuery.each(widgetJsonObj, function(key, value) { 
+		// 	//   	jQuery('.result').html('<p>' + key + '</p>'
+		// 	//     + '<p>' + value + '</p>');							
+		// 	// });
+		// 	
+		// 	jQuery.each(widgetJsonObj, function(key, value) { 
+		// 	  	console.log("Key: "+key);
+		// 		console.log("Value: "+value);						
+		// 	});
+		// });
+		
+		var widgetJsonURI = "http://serve.a-widget.com/service/getWidget.kickAction?widgetId=350449&as=30483&revision=0";
+		
+		
+		jQuery.ajax({
+		  url: widgetJsonURI,
+			dataType: "json",
+		  success: function(data) {
+						TEMP.widgetJson = data;
+						
+						var widgetJsonObj = eval("(" + data['widgetJson'] + ")");
+						console.log(typeof(widgetJsonObj));
+						jQuery.each(widgetJsonObj['properties'], function(key, value) { 
+						  	console.log("Key: "+key);
+							console.log("Value: "+value);						
+						});
+						
+						// jQuery.each(widgetJsonObj, function(key, value) { 
+						//   	jQuery('.result').html('<p>' + key + '</p>'
+						//     + '<p>' + value + '</p>');							
+						// });
+						
+					
+					}
+		});
+	
+	})();
+	
+	
+
+   function playPause() {
+
+    var myVideo = document.getElementsByTagName('video')[0];
+
+     if (myVideo.paused)
+
+        myVideo.play();
+
+     else
+
+        myVideo.pause();
+
+   }
+
+
+
+   function makeBig() {
+
+      var myVideo = document.getElementsByTagName('video')[0];
+
+      myVideo.height = (myVideo.videoHeight * 2 ) ;
+
+    }
+
+   function makeNormal() {
+
+      var myVideo = document.getElementsByTagName('video')[0];
+
+      myVideo.height = (myVideo.videoHeight) ;
+
+    }
+
+
+
+</script>

@@ -9,6 +9,20 @@
   <url>http://maven.apache.org</url>
   <dependencies>
     <dependency>
+	    <groupId>javax.json</groupId>
+	    <artifactId>javax.json-api</artifactId>
+	    <version>1.0</version>
+    </dependency>
+
+
+	<dependency>
+	    <groupId>org.glassfish</groupId>
+	    <artifactId>javax.json</artifactId>
+	    <version>1.0.4</version>
+	</dependency>
+
+
+    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>3.8.1</version>
@@ -16,6 +30,6 @@
     </dependency>
   </dependencies>
   <build>
-    <finalName>TestBetVideo</finalName>
+    <finalName>testBetVideo</finalName>
   </build>
 </project>
