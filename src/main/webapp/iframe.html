@@ -134,6 +134,8 @@
 			videoURL = unescape(query.video);
 		    	var mrssURL = query.hasOwnProperty("mrss") ? query.mrss : "sample4.mrss";
 	            playlistManager = new PlayListManager(proxyURL + mrssURL,videoContent);//proxyURL + mrssURL);
+	            //should get token from video
+	            console.log(videoURL);
 		} else {
 			$.getJSON(proxyURL + 'http://www.bet.com/videoplayer/jcr:content.token.json', function(data) {
 				token = data.token;
@@ -251,6 +253,7 @@
 		      adsManager.start();
 		    } catch (adError) {
 		      // An error may be thrown if there was a problem with the VAST response.
+		      console.log(adError);
 		    }
 		  }
 
@@ -298,7 +301,7 @@
 		        // remaining time detection.
 		        if (ad.isLinear()) {
 		          clearInterval(intervalTimer);
-		playContent()
+		          playContent()
 
 		        }
 		        break;
@@ -462,7 +465,7 @@
 
 		    function playerHandler(e){
 		        // window.console.log(e);//video meta
-		        //window.console.log(e.type);
+		        window.console.log("start to handle " + e.type);
 		        if (videoContent.currentTime > 0) {
 		            currentTime = videoContent.currentTime;
 		        }
