@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HTML5 Widget</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+   <script type="text/javascript" src="//imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
+    <script src="s_code.js"></script>
+    <script>
+        document.write(unescape("%3Cscript src='" +
+                (document.location.protocol == "https:" ? "https://sb" : "http://b") +
+                ".scorecardresearch.com/beacon.js' %3E%3C/script%3E"));
+    </script>
+    <style type="text/css" media="all">
+        html, body { margin: 0; padding: 0; border: 0; }
+        body {
+            overflow: hidden;
+            -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+            left:0;
+            right:0;
+            top:0;
+            bottom:0;
+        }
+
+        #mainContainer {
+            overflow:hidden;
+            position: absolute;
+            left:0;
+            right:0;
+            top:0;
+            bottom:0;
+
+        }
+
+        #videoplayer  {
+            position: relative;
+            background-color: #000;
+            width: 100%;
+            height: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+
+        #content {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+        }
+
+        #largePlay {
+            background:url(http://appassets.kickstatic.com/176704/images/large_play_arrow.png?timestamp=1310609614329) no-repeat;
+            width: 110px;
+            height: 120px;
+            z-index: 200;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="mainContainer">
+        <div id="videoplayer">
+            <div id="largePlay" class="className" > </div>
+
+            <video id="content" style="width:100%; height:100%;"></video>
+            <div id="adcontainer"></div>
+        </div>
+    </div>
+
+
+<script type="text/javascript">
+(function() {
+    var BrowserUtils = {},
+            query = {},
+            ub = BrowserUtils,
+            ua = navigator.userAgent,
+            queryNameVals = window.location.search.substring(1).split("&amp;").join("&").split("&");
+
+    for (var i=0; i<queryNameVals.length; i++){
+        var queryNameVal = queryNameVals[i].split("=");
+        query[queryNameVal[0]] = queryNameVal[1];
+    }
+
+    var videoURL = decodeURIComponent(query.video),
+        adURL = decodeURIComponent(query.adTag),
+        posterURL = decodeURIComponent(query.poster);
+
+    ub.isWebkit = ua.indexOf("WebKit") !== -1;
+    ub.isChrome = ua.indexOf("Chrome") !== -1;
+    ub.isIpad = ua.indexOf("iPad") !== -1;
+    ub.isIphone = ua.indexOf("iPhone") !== -1;
+    ub.isAndroid = ua.indexOf("Android") !== -1;
+    ub.isUIWebView = /(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/i.test(ua)
+    ub.isDesktopWebkit = ub.isWebkit && !ub.isIpad && !ub.isIphone;
+    console.log(ua);
+
+  console.log('video src=' + videoURL);
+  console.log('query adURL=' + adURL);
+    adURL00 = 'http://ad.doubleclick.net/pfadx/bet.com/Video;n=juicy-j-106-and-park-3495;sub=106andpark;prod=;sz=250x250;show=106andpark;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;tile=4;ct=indivmediapage;loc=4;anum=1;domainname=www.bet.com;ord=1408749495295;prog=clip'
+
+    var contentInitialized = false;
+    var medaDataInitialized = false;
+    // Create the main controller and wait for the play event to start
+    var mainController = null;
+    // ------------------------------------------------
+    // Ads Controllers
+
+    var AdsController = function(controller, player) {
+        this.controller = controller;
+        this.player = player;
+        this.contentCompleteCalled = false;
+
+        // Modify the adDisplayContainer constructor call to pass in a handle to the
+        // content video player.
+        this.adDisplayContainer =
+                new google.ima.AdDisplayContainer(
+                        this.player.adContainer,
+                        this.player.contentPlayer);
+        this.adsLoader = new google.ima.AdsLoader(this.adDisplayContainer);
+        this.adsManager = null;
+
+        this.adsLoader.addEventListener(
+                google.ima.AdsManagerLoadedEvent.Type.ADS_MANAGER_LOADED,
+                this.onAdsManagerLoaded,
+                false,
+                this);
+        this.adsLoader.addEventListener(
+                google.ima.AdErrorEvent.Type.AD_ERROR,
+                this.onAdError,
+                false,
+                this);
+    };
+
+    // On iOS and Android devices, video playback must begin in a user action.
+    // AdDisplayContainer provides a initialize() API to be called at appropriate time.
+    // This should be called when the user clicks or taps.
+    AdsController.prototype.initialUserAction = function() {
+        this.adDisplayContainer.initialize();
+    };
+
+    AdsController.prototype.requestAds = function(adTagUrl) {
+        var adsRequest = new google.ima.AdsRequest();
+
+        adsRequest.adTagUrl = adTagUrl;
+
+
+        adsRequest.linearAdSlotWidth = this.player.width;
+        adsRequest.linearAdSlotHeight = this.player.height;
+        adsRequest.nonLinearAdSlotWidth = this.player.width;
+        adsRequest.nonLinearAdSlotHeight = this.player.height;
+        console.log('Request Ads: ' + adTagUrl);
+        this.adsLoader.requestAds(adsRequest);
+    };
+
+    AdsController.prototype.onAdsManagerLoaded = function(adsManagerLoadedEvent) {
+        console.log('Ads loaded.');
+
+        //this.adsManager = adsManagerLoadedEvent.getAdsManager(
+        //        this.player.contentPlayer);
+        var adsRenderingSettings = new google.ima.AdsRenderingSettings();
+        //adsRenderingSettings.restoreCustomPlaybackStateOnAdBreakComplete = false; //we will handle resume our self-ding
+        this.adsManager = adsManagerLoadedEvent.getAdsManager(
+               this.player.contentPlayer);//, adsRenderingSettings); // handle auto mid-roll-ding
+        contentInitialized = true;
+        //satrt ad only if medadata is loaded-ding
+        //if (medaDataInitialized){
+            this.processAdsManager(this.adsManager);
+        //}
+        //else{//wait for it
+        //	setTimeout(this.processAdsManager(this.adsManager), 1500);
+        //}
+    };
+
+    AdsController.prototype.processAdsManager = function(adsManager) {
+        // Attach the pause/resume events.
+        adsManager.addEventListener(
+                google.ima.AdEvent.Type.CONTENT_PAUSE_REQUESTED,
+                this.onContentPauseRequested,
+                false,
+                this);
+        adsManager.addEventListener(
+                google.ima.AdEvent.Type.CONTENT_RESUME_REQUESTED,
+                this.onContentResumeRequested,
+                false,
+                this);
+        // Handle errors.
+        adsManager.addEventListener(
+                google.ima.AdErrorEvent.Type.AD_ERROR,
+                this.onAdError,
+                false,
+                this);
+        var events = [google.ima.AdEvent.Type.ALL_ADS_COMPLETED,
+            google.ima.AdEvent.Type.CLICK,
+            google.ima.AdEvent.Type.COMPLETE,
+            google.ima.AdEvent.Type.FIRST_QUARTILE,
+            google.ima.AdEvent.Type.LOADED,
+            google.ima.AdEvent.Type.MIDPOINT,
+            google.ima.AdEvent.Type.PAUSED,
+            google.ima.AdEvent.Type.STARTED,
+            google.ima.AdEvent.Type.THIRD_QUARTILE];
+        for (var index in events) {
+            adsManager.addEventListener(
+                    events[index],
+                    this.onAdEvent,
+                    false,
+                    this);
+        }
+
+        adsManager.init(
+                this.player.width,
+                this.player.height,
+                google.ima.ViewMode.NORMAL);
+
+        adsManager.start();
+    };
+
+    AdsController.prototype.pause = function() {
+        if (this.adsManager) {
+            this.adsManager.pause();
+        }
+    };
+
+    AdsController.prototype.resume = function() {
+        if (this.adsManager) {
+            this.adsManager.resume();
+        }
+    };
+
+    AdsController.prototype.onContentPauseRequested = function(adErrorEvent) {
+        this.controller.pauseForAd();
+    };
+
+    AdsController.prototype.onContentResumeRequested = function(adErrorEvent) {
+        // Without this check the video starts over from the beginning on a
+        // post-roll's CONTENT_RESUME_REQUESTED
+        if (!this.contentCompleteCalled) {
+            this.controller.resumeAfterAd();
+        }
+    };
+
+    AdsController.prototype.onAdEvent = function(adEvent) {
+        console.log('Ad event: ' + adEvent.type);
+
+        if (adEvent.type == google.ima.AdEvent.Type.CLICK) {
+            this.controller.adClicked();
+        }
+    };
+
+
+    AdsController.prototype.onAdError = function(adErrorEvent) {
+        console.log('Ad error: ' + adErrorEvent.getError().toString());
+        if (this.adsManager) {
+            this.adsManager.destroy();
+        }
+        this.controller.resumeAfterAd();
+    };
+
+    AdsController.prototype.resize = function(width, height) {
+        if (this.adsManager) {
+            this.adsManager.resize(width, height, google.ima.ViewMode.FULLSCREEN);
+        }
+    };
+
+    AdsController.prototype.contentEnded = function() {
+        this.contentCompleteCalled = true;
+        this.adsLoader.contentComplete();
+    };
+
+
+
+
+    // ------------------------------------------------
+    // Player Controller
+
+
+    var PlayerController = function() {
+        this.contentPlayer = document.getElementById('content');
+        this.adContainer = document.getElementById('adcontainer');
+        this.videoPlayerContainer = document.getElementById('videoplayer');
+
+        this.width = 640;
+        this.height = 360;
+
+        if (posterURL) {
+            this.contentPlayer.poster = posterURL;
+        }
+        this.contentPlayer.src = videoURL;
+        //added -ding
+        contentInitialized = false;
+
+        // Listen for the loadedmetadata event to seek the video after mid-rolls
+        this.contentPlayer.addEventListener('loadedmetadata', this.bind(this, this.loadedMetadataHandler));
+        this.adPlaying = false;
+    };
+
+    PlayerController.prototype.setAdPlaying = function(adPlaying) {
+        this.adPlaying = adPlaying;
+    };
+
+    PlayerController.prototype.preloadContent = function(contentLoadedAction) {
+        // If this is the initial user action on iOS or Android device,
+        // simulate playback to enable the video element for later program-triggered
+        // playback.
+        if (this.isMobilePlatform()) {
+            this.contentPreloadHandler = contentLoadedAction;
+            this.contentPlayer.addEventListener(
+                    'loadedmetadata',
+                    this.contentPreloadHandler,
+                    false);
+            this.contentPlayer.load();
+        } else {
+            contentLoadedAction();
+        }
+    };
+
+    /**
+     * With custom ad playback we load the ad in the content player. We need to
+     * remove this listener to prevent requesting ads again every time we load an ad.
+     */
+    PlayerController.prototype.removeContentPreloadHandler = function() {
+        this.contentPlayer.removeEventListener('loadedmetadata', this.contentPreloadHandler, false);
+    };
+
+    PlayerController.prototype.load = function() {
+        this.contentPlayer.load();
+    };
+
+    PlayerController.prototype.play = function() {
+        this.contentPlayer.setAttribute('controls', 'controls' );
+        this.contentPlayer.setAttribute('poster', '' );
+
+        // Register for Omniture events
+        this.contentPlayer.addEventListener('loadedmetadata', playerHandler, false);
+        this.contentPlayer.addEventListener('play', playerHandler, false);
+        this.contentPlayer.addEventListener('pause', playerHandler, false);
+        this.contentPlayer.addEventListener('ended', playerHandler, false);
+
+        this.contentPlayer.play();
+    };
+
+    PlayerController.prototype.pause = function() {
+        this.contentPlayer.pause();
+    };
+
+    PlayerController.prototype.isMobilePlatform = function() {
+        return this.contentPlayer.paused &&
+                (navigator.userAgent.match(/(iPod|iPhone|iPad)/) ||
+                        navigator.userAgent.toLowerCase().indexOf('android') > -1);
+    };
+
+    PlayerController.prototype.resize = function(position, top, left, width, height) {
+        this.videoPlayerContainer.style.position = position;
+        this.videoPlayerContainer.style.top = top + 'px';
+        this.videoPlayerContainer.style.left = left + 'px';
+        this.videoPlayerContainer.style.width = width + 'px';
+        this.videoPlayerContainer.style.height = height + 'px';
+        this.contentPlayer.style.width = width + 'px';
+        this.contentPlayer.style.height = height + 'px';
+    };
+
+    PlayerController.prototype.registerVideoEndedCallback = function(callback) {
+        this.contentPlayer.addEventListener(
+                'ended',
+                callback,
+                false);
+    };
+
+    PlayerController.prototype.unregisterVideoEndedCallback = function(callback) {
+        this.contentPlayer.removeEventListener(
+                'ended',
+                callback,
+                false);
+    };
+
+    PlayerController.prototype.setSrc = function(src) {
+        this.contentPlayer.src = src;
+    };
+
+    PlayerController.prototype.loadedMetadataHandler = function() {
+        if (this.contentPlayer.seekable.length) {
+            // Video is in a seekable state
+            if (!this.adPlaying && this.lastPauseTime &&
+                    this.contentPlayer.seekable.end(0) > this.lastPauseTime) {
+                // Content video is playing, and we can seek to the last pause time
+                this.contentPlayer.currentTime = this.lastPauseTime;
+            }
+            //need to wait contentInitialized = true;--ding
+            medaDataInitialized = true;
+            if (contentInitialized){
+                //mainController.adsController.processAdsManager(mainController.adsController.adsManager);
+            }
+            //end by -ding
+       } else {
+            // Video isn't seekable yet, try again in 100ms
+            setTimeout(this.bind(this, this.loadedMetadataHandler), 100);
+        }
+    };
+
+    PlayerController.prototype.saveCurrentTime = function() {
+        this.lastPauseTime = this.contentPlayer.currentTime;
+    };
+
+    PlayerController.prototype.bind = function(thisObj, fn) {
+        return function() {
+            fn.apply(thisObj, arguments);
+        };
+    };
+
+
+
+    // ------------------------------------------------
+    // Main Controller
+
+    var MainController = function(playerController) {
+        this.playListener = this.bind(this, this.onClick);
+        this.playButton = document.getElementById('largePlay');
+
+        // Listen for click events from the play button or the player
+        playerController.contentPlayer.addEventListener('play', this.playListener, false);
+        this.playButton.addEventListener(
+                'click',
+                this.bind(this, this.onClick),
+                false);
+
+        this.playing = false;
+        this.adsActive = false;
+        this.adsDone = false;
+
+        if (BrowserUtils.isIphone) {
+            this.playButton.style.display = 'none';
+        }
+
+        this.playerController = playerController;
+        // Save the video source to reload the video after each ad
+        this.contentSrc = videoURL;
+        this.adsController = new AdsController(this, this.playerController);
+        // Ad tag with some mid-rolls and a post-roll for better testing
+        this.adTagUrl = adURL;
+
+        // Save the bound onContentEnded handler to easily add and remove it between
+        // content and ads
+        this.contentEndedCallback = this.bind(this, this.onContentEnded);
+        this.playerController.registerVideoEndedCallback(this.contentEndedCallback);
+    };
+
+    MainController.prototype.bind = function(thisObj, fn) {
+        return function() {
+            fn.apply(thisObj, arguments);
+        };
+    };
+
+    MainController.prototype.onClick = function() {
+        var that = this;
+        console.log('Click. Ads done:' + this.adsDone);
+        if (!this.adsDone) {
+            this.playButton.style.display = 'none';
+            this.playerController.contentPlayer.setAttribute('poster', '');
+            this.playerController.contentPlayer.removeEventListener('play', this.playListener, false);
+            setTimeout(function(){
+                that.playerController.contentPlayer.pause(); //block play so it buffers before playing
+            }, 1);
+
+            // The user clicked/tapped - inform the ads controller that this code
+            // is being run in a user action thread.
+            this.adsController.initialUserAction();
+            // At the same time, initialize the content player as well.
+            // When content is loaded, we'll issue the ad request to prevent it
+            // from interfering with the initialization.
+            // See https://developers.google.com/interactive-media-ads/docs/sdks/html5/v3/ads#iosvideo
+            // for more information.
+
+            this.playerController.preloadContent(
+                    this.bind(this, this.contentPreloadHandler));
+            this.adsDone = true;
+            return;
+        }
+
+        if (this.adsActive) {
+            if (this.playing) {
+                this.adsController.pause();
+            } else {
+                this.adsController.resume();
+            }
+        } else {
+            if (this.playing) {
+                this.playerController.pause();
+            } else {
+                this.playerController.play();
+            }
+        }
+
+        this.playing = !this.playing;
+    };
+
+
+    MainController.prototype.resumeAfterAd = function() {
+        // Add the onContentEnded handler to trigger the post-roll when our content
+        // is finished.
+        this.playerController.registerVideoEndedCallback(this.contentEndedCallback);
+
+        // Re-set the video source to the content video
+        this.playerController.setSrc(this.contentSrc);
+        this.playerController.load();
+        this.playerController.play();
+        this.adsActive = false;
+    };
+
+    MainController.prototype.pauseForAd = function() {
+        // Save the current time to seek to when mid-rolls are finished
+        this.playerController.saveCurrentTime();
+        // Remove the onContentEnded handler so we don't trigger the post-roll when
+        // ads finish.
+        this.playerController.unregisterVideoEndedCallback(this.contentEndedCallback);
+        this.adsActive = true;
+        this.playing = true;
+        this.playerController.pause();
+    };
+
+    MainController.prototype.adClicked = function() {
+        console.log('Ad clicked');
+        this.playerController.contentPlayer.setAttribute('controls', 'controls' );
+        this.playing = false;
+    };
+
+    MainController.prototype.contentPreloadHandler = function() {
+        this.playerController.removeContentPreloadHandler();
+        this.loadAds();
+    };
+
+    MainController.prototype.loadAds = function() {
+        this.adsController.requestAds(this.adTagUrl);
+    };
+
+
+    MainController.prototype.onContentEnded = function() {
+        this.adsController.contentEnded();
+    };
+
+
+
+// --------------------------------------------
+// Omniture
+
+    var mediaName;
+
+    if(query.omnitureTracking)
+    {
+        var customUrlVars = decodeURIComponent(query.omnitureTracking).split("&");
+
+        var customVarsKeysArray = [];
+        for (var x=0; x<customUrlVars.length; x++)
+        {
+            var keyValue = customUrlVars[x].split("=");
+            var key = keyValue[0]
+
+            if(key == "mediaName")
+            {
+                mediaName = keyValue[1]
+            }
+            else
+            {
+                customVarsKeysArray.push(key);
+                s[key] = keyValue[1];
+            }
+
+        }
+
+        s.Media.trackVars += "," + customVarsKeysArray.join(',');
+    }
+
+    var videoOpened = false;
+    var currentTime = 0;
+    var videoContent = document.getElementById('content');
+
+    function playerHandler(e){
+        if (videoContent.currentTime > 0) {
+            currentTime = videoContent.currentTime;
+        }
+        switch(e.type){
+            case 'play':
+                if(!videoOpened){
+                    console.log('Omniture: opened');
+                    s.Media.open(mediaName, videoContent.duration, videoContent.src);
+                    s.Media.play(mediaName, 0);
+                    COMSCORE.beacon({
+                        c1:1,
+                        c2:"6035012",
+                        c5:"02"
+                    })
+                }else{
+                    console.log('Omniture: play');
+                    s.Media.play(mediaName, currentTime);
+                }
+                // alert('currentTime: ' + currentTime);
+                // alert('duration: ' + Math.floor(html5Player.duration));
+                // alert('videoPageName: ' + videoPageName);
+                videoOpened = true;
+                break;
+            case 'pause':
+                console.log('Omniture: pause');
+                s.Media.stop(mediaName,currentTime);
+                break;
+            case 'ended':
+                console.log('Omniture: ended');
+                s.Media.stop(mediaName,currentTime);
+                s.Media.close(mediaName);
+                break;
+            default:
+                break;
+        }
+    }
+
+    var container = document.getElementById('videoplayer'),
+        playButton = document.getElementById('largePlay');
+
+    if (BrowserUtils.isIphone) {
+        playButton.style.display = 'none';
+    }
+    container.addEventListener('resize',
+            function(){
+                $('#largePlay').css({
+                    position:'absolute',
+                    left: ($('#videoplayer').width()/2 - $('#largePlay').outerWidth()/2),
+                    top: ($('#videoplayer').height()/2 - $('#largePlay').outerHeight()/2)
+                });
+            });
+    container.dispatchEvent(new Event('resize'));
+
+    window.onload = function() {
+        mainController = new MainController(new PlayerController());
+    };
+})();
+</script>
+
+</body>
+</html>
