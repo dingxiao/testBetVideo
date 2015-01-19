@@ -25,7 +25,7 @@ Test BET video via html5.<br>
         var token = encodeURIComponent("<%=token %>");
         var iframeSource = iframeTemplate.replace("{TOKEN}", token);
         console.log('Final URL: ' + iframeSource);
-        console.log('Token: ' + '<?php echo $obj->token; ?>');
+        console.log('Token: ' + token);
         var iframe = document.createElement('iframe');
         iframe.src = iframeSource;
         iframe.frameborder = 0;

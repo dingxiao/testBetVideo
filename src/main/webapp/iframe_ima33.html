@@ -87,19 +87,24 @@
  var playButton;
  var videoContent;
  var contentEndedListener
- 
+ var requestAdsDone = false;
+ var lastPauseTime = 0;
+ contentEndedListener = function() {
+	 adsLoader.contentComplete();
+}
+
  function init() {
    videoContent = document.getElementById('contentElement');
    videoContent.src = videoURL;
    //need to handle end--ding
-   contentEndedListener = function() {adsLoader.contentComplete();};
-   videoContent.addEventListener('ended', contentEndedListener);
-
+   //videoContent.addEventListener('ended', contentEndedListener);
+   requestAdsDone = false;
    playButton = document.getElementById('playButton');
    //playButton.addEventListener('click', requestAds);
    videoContent.addEventListener(
 		      'loadedmetadata',
 		      function() {
+		    	   // ger ad after meta data is loaded
 		    	   playButton.addEventListener('click', requestAds);
 		    	  
 		      });
@@ -119,7 +124,10 @@
 
  function requestAds() {
 	 //only do once
-
+   if (requestAdsDone){
+	   return;
+   }
+   requestAdsDone = true;
    // Create the ad display container.
    createAdDisplayContainer();
    // Initialize the container. Must be done via a user action on mobile devices.
@@ -153,6 +161,7 @@
 
  function onAdsManagerLoaded(adsManagerLoadedEvent) {
    // Get the ads manager.
+   console.log("get ad manager ");
    //adsManager = adsManagerLoadedEvent.getAdsManager(videoContent);  // should be set to the content video element
        var adsRenderingSettings = new google.ima.AdsRenderingSettings();
        adsRenderingSettings.restoreCustomPlaybackStateOnAdBreakComplete = false;
@@ -192,11 +201,13 @@
      adsManager.start();
    } catch (adError) {
      // An error may be thrown if there was a problem with the VAST response.
+     console.log("error ad manager start " + adError);
      videoContent.play();
    }
  }
 
  function onAdEvent(adEvent) {
+   console.log("get ad event " + adEvent.type);
    // Retrieve the ad from the event. Some events (e.g. ALL_ADS_COMPLETED)
    // don't have ad object associated.
    var ad = adEvent.getAd();
@@ -241,7 +252,8 @@
  }
 
  function onContentPauseRequested() {
-   videoContent.removeEventListener('ended', contentEndedListener);
+   //videoContent.removeEventListener('ended', contentEndedListener);
+   lastPauseTime = videoContent.currentTime;
 
    videoContent.pause();
    // This function is where you should setup UI for showing ads (e.g.
@@ -250,14 +262,34 @@
  }
 
  function onContentResumeRequested() {
-	 videoContent.addEventListener('ended', contentEndedListener);
-   videoContent.play();
+	videoContent.src = videoURL;//set to videoURL again as ad has changed the src
+	videoContent.addEventListener('loadedmetadata', loadedMetadataHandler);
+
+   //videoContent.addEventListener('ended', contentEndedListener);
+   //videoContent.play();
+   videoContent.load();//play only after meta data is loaded
+
    // This function is where you should ensure that your UI is ready
    // to play content. It is the responsibility of the Publisher to
    // implement this function when necessary.
    // setupUIForContent();
 
  }
+ function loadedMetadataHandler() {
+	  if (videoContent.seekable.length) {
+	    // Video is in a seekable state
+	    if (videoContent.seekable.end(0) > this.lastPauseTime) {
+	      // We can seek to the last pause time
+	      videoContent.currentTime = this.lastPauseTime;
+	      videoContent.removeEventListener('loadedmetadata', loadedMetadataHandler);
+	      videoContent.play();
+	    }
+	  } else {
+	    // Video isn't seekable yet, try again in 100ms
+	    setTimeout(loadedMetadataHandler, 100);
+	  }
+}
+
 
  // Wire UI element references and UI event listeners.
  init();

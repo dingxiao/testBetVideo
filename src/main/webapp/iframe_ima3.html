@@ -3,7 +3,7 @@
 <head>
     <title>HTML5 Widget</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-   <script type="text/javascript" src="//imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
+    <script src="http://s0.2mdn.net/instream/html5/ima3_debug.js"></script>
     <script src="s_code.js"></script>
     <script>
         document.write(unescape("%3Cscript src='" +
@@ -100,10 +100,8 @@
   console.log('query adURL=' + adURL);
     adURL00 = 'http://ad.doubleclick.net/pfadx/bet.com/Video;n=juicy-j-106-and-park-3495;sub=106andpark;prod=;sz=250x250;show=106andpark;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;tile=4;ct=indivmediapage;loc=4;anum=1;domainname=www.bet.com;ord=1408749495295;prog=clip'
 
-    var contentInitialized = false;
-    var medaDataInitialized = false;
-    // Create the main controller and wait for the play event to start
-    var mainController = null;
+var contentEndedListener; 
+
     // ------------------------------------------------
     // Ads Controllers
 
@@ -156,21 +154,9 @@
 
     AdsController.prototype.onAdsManagerLoaded = function(adsManagerLoadedEvent) {
         console.log('Ads loaded.');
-
-        //this.adsManager = adsManagerLoadedEvent.getAdsManager(
-        //        this.player.contentPlayer);
-        var adsRenderingSettings = new google.ima.AdsRenderingSettings();
-        //adsRenderingSettings.restoreCustomPlaybackStateOnAdBreakComplete = false; //we will handle resume our self-ding
         this.adsManager = adsManagerLoadedEvent.getAdsManager(
-               this.player.contentPlayer);//, adsRenderingSettings); // handle auto mid-roll-ding
-        contentInitialized = true;
-        //satrt ad only if medadata is loaded-ding
-        //if (medaDataInitialized){
-            this.processAdsManager(this.adsManager);
-        //}
-        //else{//wait for it
-        //	setTimeout(this.processAdsManager(this.adsManager), 1500);
-        //}
+                this.player.contentPlayer);
+        this.processAdsManager(this.adsManager);
     };
 
     AdsController.prototype.processAdsManager = function(adsManager) {
@@ -252,7 +238,7 @@
     AdsController.prototype.onAdError = function(adErrorEvent) {
         console.log('Ad error: ' + adErrorEvent.getError().toString());
         if (this.adsManager) {
-            this.adsManager.destroy();
+            //this.adsManager.destroy();
         }
         this.controller.resumeAfterAd();
     };
@@ -287,8 +273,7 @@
             this.contentPlayer.poster = posterURL;
         }
         this.contentPlayer.src = videoURL;
-        //added -ding
-        contentInitialized = false;
+
 
         // Listen for the loadedmetadata event to seek the video after mid-rolls
         this.contentPlayer.addEventListener('loadedmetadata', this.bind(this, this.loadedMetadataHandler));
@@ -386,13 +371,7 @@
                 // Content video is playing, and we can seek to the last pause time
                 this.contentPlayer.currentTime = this.lastPauseTime;
             }
-            //need to wait contentInitialized = true;--ding
-            medaDataInitialized = true;
-            if (contentInitialized){
-                //mainController.adsController.processAdsManager(mainController.adsController.adsManager);
-            }
-            //end by -ding
-       } else {
+        } else {
             // Video isn't seekable yet, try again in 100ms
             setTimeout(this.bind(this, this.loadedMetadataHandler), 100);
         }
@@ -443,6 +422,10 @@
         // content and ads
         this.contentEndedCallback = this.bind(this, this.onContentEnded);
         this.playerController.registerVideoEndedCallback(this.contentEndedCallback);
+
+//var contentEndedListener = function() {adsLoader.contentComplete();};
+//videoContent.addEventListener('ended', contentEndedListener);
+
     };
 
     MainController.prototype.bind = function(thisObj, fn) {
@@ -628,6 +611,8 @@
             });
     container.dispatchEvent(new Event('resize'));
 
+    // Create the main controller and wait for the play event to start
+    var mainController = null;
     window.onload = function() {
         mainController = new MainController(new PlayerController());
     };
