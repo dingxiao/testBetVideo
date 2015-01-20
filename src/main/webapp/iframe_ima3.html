@@ -321,7 +321,8 @@ var contentEndedListener;
         this.contentPlayer.addEventListener('play', playerHandler, false);
         this.contentPlayer.addEventListener('pause', playerHandler, false);
         this.contentPlayer.addEventListener('ended', playerHandler, false);
-
+        //have error in full episode, add below--ding
+        this.contentPlayer.src = videoURL;
         this.contentPlayer.play();
     };
 
@@ -407,7 +408,7 @@ var contentEndedListener;
         this.adsActive = false;
         this.adsDone = false;
 
-        if (BrowserUtils.isIphone) {
+        if (BrowserUtils.isIphone || BrowserUtils.isAndroid) {
             this.playButton.style.display = 'none';
         }
 
