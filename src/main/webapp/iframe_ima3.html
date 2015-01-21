@@ -32,7 +32,7 @@
         }
 
         #videoplayer  {
-            position: relative;
+            position: absolute;
             background-color: #000;
             width: 100%;
             height: 100%;
@@ -41,16 +41,9 @@
         }
 
 
-        #content {
-            position: absolute;
-            top: 0px;
-            left: 0px;
-            width: 100%;
-            height: 100%;
-        }
 
         #largePlay {
-            background:url(http://appassets.kickstatic.com/176704/images/large_play_arrow.png?timestamp=1310609614329) no-repeat;
+            background:url(images/large_play_arrow.png) no-repeat;
             width: 110px;
             height: 120px;
             z-index: 200;
@@ -64,7 +57,7 @@
         <div id="videoplayer">
             <div id="largePlay" class="className" > </div>
 
-            <video id="content" style="width:100%; height:100%;"></video>
+            <video id="content" autoplay="autoplay" style="width:100%; height:100%;"></video>
             <div id="adcontainer"></div>
         </div>
     </div>
@@ -232,6 +225,9 @@ var contentEndedListener;
         if (adEvent.type == google.ima.AdEvent.Type.CLICK) {
             this.controller.adClicked();
         }
+        if (adEvent.type == google.ima.AdEvent.Type.PAUSED) {
+        	//$('#largePlay').show(); after start, no need to show click
+        }
     };
 
 
@@ -289,7 +285,8 @@ var contentEndedListener;
         // simulate playback to enable the video element for later program-triggered
         // playback.
         if (this.isMobilePlatform()) {
-            this.contentPreloadHandler = contentLoadedAction;
+            //for mobile, 1 load content 2 load metadata for player 3 request ad
+        	this.contentPreloadHandler = contentLoadedAction;
             this.contentPlayer.addEventListener(
                     'loadedmetadata',
                     this.contentPreloadHandler,
@@ -408,7 +405,7 @@ var contentEndedListener;
         this.adsActive = false;
         this.adsDone = false;
 
-        if (BrowserUtils.isIphone || BrowserUtils.isAndroid) {
+        if (BrowserUtils.isIphone ) { //|| BrowserUtils.isAndroid) 
             this.playButton.style.display = 'none';
         }
 
@@ -599,7 +596,7 @@ var contentEndedListener;
     var container = document.getElementById('videoplayer'),
         playButton = document.getElementById('largePlay');
 
-    if (BrowserUtils.isIphone) {
+    if (BrowserUtils.isIphone ){ //|| BrowserUtils.isAndroid) { android needs button to start, iphone do not
         playButton.style.display = 'none';
     }
     container.addEventListener('resize',

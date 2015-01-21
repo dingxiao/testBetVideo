@@ -16,7 +16,6 @@ if (useIframe == null){
 <title>Test token</title>
 </head>
 <body>
-Test BET video via html5.<br>
     <script>
     var tag = "<%=useIframe %>"; 
     if (tag == "no"){
