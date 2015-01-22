@@ -51,7 +51,10 @@
       <div id="adContainer"></div>
     </div>
     <button id="playButton">Play</button>
+    <!-- 
     <script type="text/javascript" src="//imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
+     -->
+    <script src="http://s0.2mdn.net/instream/html5/ima3_debug.js"></script>
     <script type="text/javascript" >
     var BrowserUtils = {},
     query = {},
@@ -86,51 +89,67 @@
  var intervalTimer;
  var playButton;
  var videoContent;
- var contentEndedListener
+ //var contentEndedListener
  var requestAdsDone = false;
+ var videoStarted = false;
+ var videoLoadedMetadata = false;
+ var adsLoaded = false;
  var lastPauseTime = 0;
- contentEndedListener = function() {
-	 adsLoader.contentComplete();
-}
 
- function init() {
-   videoContent = document.getElementById('contentElement');
-   videoContent.src = videoURL;
-   //need to handle end--ding
-   //videoContent.addEventListener('ended', contentEndedListener);
-   requestAdsDone = false;
-   playButton = document.getElementById('playButton');
-   //playButton.addEventListener('click', requestAds);
+function init() {
+	   videoContent = document.getElementById('contentElement');
+	   videoContent.src = videoURL;
+	   requestAdsDone = false;
+	   playButton = document.getElementById('playButton');
+	   playButton.addEventListener('click', function(){
+		   requestAds();
+		   //init display container
+		   //createAdDisplayContainer();
+		   initVideo();
+	   });
+}
+function initVideo() {
+	console.log("initVideo ");
+   videoContent.addEventListener('ended', contentEndedListener);
    videoContent.addEventListener(
 		      'loadedmetadata',
 		      function() {
 		    	   // ger ad after meta data is loaded
-		    	   playButton.addEventListener('click', requestAds);
-		    	  
+		    	   //playButton.addEventListener('click', requestAds);
+		    	   videoLoadedMetadata = true;
+		    	   if (adsLoaded){
+		    		   startAdsManager();
+		    	   }
 		      });
-
+   //playButton.addEventListener('click', requestAds);
    if(BrowserUtils.isIphone || BrowserUtils.isAndroid){
        playButton.style.display = 'none';
    }
-
+   //load video, wait for loadedmetadata event
+   videoContent.load();
+   //need this???? no, this will start video wiout ad
+   //videoContent.play();
  }
 
  function createAdDisplayContainer() {
+	 console.log("create ad dispaly ");
    // We assume the adContainer is the DOM id of the element that will house
    // the ads.
    adDisplayContainer =
        new google.ima.AdDisplayContainer(document.getElementById('adContainer'));
+   adDisplayContainer.initialize();
  }
 
  function requestAds() {
+	 console.log("requestAds ");
 	 //only do once
    if (requestAdsDone){
-	   return;
+	   //return;
    }
    requestAdsDone = true;
    // Create the ad display container.
-   createAdDisplayContainer();
-   // Initialize the container. Must be done via a user action on mobile devices.
+   adDisplayContainer =
+       new google.ima.AdDisplayContainer(document.getElementById('adContainer'));
    adDisplayContainer.initialize();
    // Create ads loader.
    adsLoader = new google.ima.AdsLoader(adDisplayContainer);
@@ -192,20 +211,26 @@
    adsManager.addEventListener(
        google.ima.AdEvent.Type.COMPLETE,
        onAdEvent);
-
-   try {
-     // Initialize the ads manager. Ad rules playlist will start at this time.
-     adsManager.init(640, 360, google.ima.ViewMode.NORMAL);
-     // Call play to start showing the ad. Single video and overlay ads will
-     // start at this time; the call will be ignored for ad rules.
-     adsManager.start();
-   } catch (adError) {
-     // An error may be thrown if there was a problem with the VAST response.
-     console.log("error ad manager start " + adError);
-     videoContent.play();
+   adsLoaded = true;
+   if (videoLoadedMetadata){
+	   startAdsManager();
    }
  }
 
+ function startAdsManager(){
+	   try {
+		     // Initialize the ads manager. Ad rules playlist will start at this time.
+		     adsManager.init(640, 360, google.ima.ViewMode.NORMAL);
+		     // Call play to start showing the ad. Single video and overlay ads will
+		     // start at this time; the call will be ignored for ad rules.
+		     adsManager.start();
+		   } catch (adError) {
+		     // An error may be thrown if there was a problem with the VAST response.
+		     console.log("error ad manager start " + adError);
+		     videoContent.play();
+		   }
+	 
+ }
  function onAdEvent(adEvent) {
    console.log("get ad event " + adEvent.type);
    // Retrieve the ad from the event. Some events (e.g. ALL_ADS_COMPLETED)
@@ -241,6 +266,8 @@
        if (ad.isLinear()) {
          clearInterval(intervalTimer);
        }
+       //start video  added--ding
+       //onContentResumeRequested();
        break;
    }
  }
@@ -248,11 +275,18 @@
  function onAdError(adErrorEvent) {
    // Handle the error logging.
    console.log(adErrorEvent.getError());
-   adsManager.destroy();
+   //adsManager.destroy();
  }
-
+ function contentEndedListener() {
+	 console.log("getEnded event ");
+     adsLoader.contentComplete();
+}
  function onContentPauseRequested() {
-   //videoContent.removeEventListener('ended', contentEndedListener);
+   console.log("get ContentPauseRequested ");
+   if (!videoStarted){
+	   //return;
+   }
+   videoContent.removeEventListener('ended', contentEndedListener);
    lastPauseTime = videoContent.currentTime;
 
    videoContent.pause();
@@ -262,13 +296,19 @@
  }
 
  function onContentResumeRequested() {
-	videoContent.src = videoURL;//set to videoURL again as ad has changed the src
-	videoContent.addEventListener('loadedmetadata', loadedMetadataHandler);
+	console.log("get ContentResumeRequested ");
+    // Without this check the video starts over from the beginning on a
+    // post-roll's CONTENT_RESUME_REQUESTED
+    //if (contentCompleteCalled) {
+	//videoContent.src = videoURL;//set to videoURL again as ad has changed the src
+	//next line cause err on ios 7 simulator
+	//videoContent.addEventListener('loadedmetadata', loadedMetadataHandler);
 
-   //videoContent.addEventListener('ended', contentEndedListener);
-   //videoContent.play();
-   videoContent.load();//play only after meta data is loaded
-
+   videoContent.addEventListener('ended', contentEndedListener);
+   //according t o ima doc, should wait for loadedmetadata event to play video, but seems we do not get loadedmetadata ecevt, so no load, just play here
+   //videoContent.load();//play only after meta data is loaded
+   videoContent.play();
+   videoStarted = true;
    // This function is where you should ensure that your UI is ready
    // to play content. It is the responsibility of the Publisher to
    // implement this function when necessary.
@@ -276,6 +316,7 @@
 
  }
  function loadedMetadataHandler() {
+	 console.log("get loadedMetadataHandler ");
 	  if (videoContent.seekable.length) {
 	    // Video is in a seekable state
 	    if (videoContent.seekable.end(0) > this.lastPauseTime) {
@@ -283,6 +324,7 @@
 	      videoContent.currentTime = this.lastPauseTime;
 	      videoContent.removeEventListener('loadedmetadata', loadedMetadataHandler);
 	      videoContent.play();
+	      videoStarted = true;
 	    }
 	  } else {
 	    // Video isn't seekable yet, try again in 100ms

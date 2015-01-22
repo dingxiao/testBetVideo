@@ -147,8 +147,12 @@ var contentEndedListener;
 
     AdsController.prototype.onAdsManagerLoaded = function(adsManagerLoadedEvent) {
         console.log('Ads loaded.');
+        //this.adsManager = adsManagerLoadedEvent.getAdsManager(
+        //        this.player.contentPlayer);
+        var adsRenderingSettings = new google.ima.AdsRenderingSettings();
+        adsRenderingSettings.restoreCustomPlaybackStateOnAdBreakComplete = false;
         this.adsManager = adsManagerLoadedEvent.getAdsManager(
-                this.player.contentPlayer);
+        		this.player.contentPlayer, adsRenderingSettings);
         this.processAdsManager(this.adsManager);
     };
 
