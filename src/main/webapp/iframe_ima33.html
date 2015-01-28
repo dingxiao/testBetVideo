@@ -101,12 +101,19 @@ function init() {
 	   videoContent.src = videoURL;
 	   requestAdsDone = false;
 	   playButton = document.getElementById('playButton');
-	   playButton.addEventListener('click', function(){
-		   requestAds();
-		   //init display container
-		   //createAdDisplayContainer();
-		   initVideo();
-	   });
+       // Listen for click events from the play button or the player
+       videoContent.addEventListener('play', clickHandler, false);
+       playButton.addEventListener('click',clickHandler, false);
+}
+function clickHandler(){
+	if (requestAdsDone){
+		return;
+	}
+    requestAds();
+    //init display container
+    //createAdDisplayContainer();
+    initVideo();
+    videoContent.removeEventListener('play', clickHandler);
 }
 function initVideo() {
 	console.log("initVideo ");

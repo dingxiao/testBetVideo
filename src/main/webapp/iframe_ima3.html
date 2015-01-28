@@ -57,7 +57,7 @@
         <div id="videoplayer">
             <div id="largePlay" class="className" > </div>
 
-            <video id="content" autoplay="autoplay" style="width:100%; height:100%;"></video>
+            <video id="content" style="width:100%; height:100%;"></video>
             <div id="adcontainer"></div>
         </div>
     </div>
@@ -600,7 +600,7 @@ var contentEndedListener;
     var container = document.getElementById('videoplayer'),
         playButton = document.getElementById('largePlay');
 
-    if (BrowserUtils.isIphone ){ //|| BrowserUtils.isAndroid) { android needs button to start, iphone do not
+    if (BrowserUtils.isIphone ){ //|| BrowserUtils.isAndroid) { android needs button to start, iphone does not
         playButton.style.display = 'none';
     }
     container.addEventListener('resize',
