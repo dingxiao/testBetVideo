@@ -11,22 +11,29 @@ String url = "http://www.bet.com/videoplayer/jcr:content.token.json";
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-<title>choose your test page</title>
+<title>Home page</title>
 </head>
 <body>
-<h2> test BET video</h2>
+<h2>BET video with ad configured on DFP</h2>
+This link will give you full episode video Black girl rock with ad configured on DFP
+<a href="test2.jsp">test rock</a>
 <br/>
-This link will give you full episode video Black girl rock from Durga using Bryan's code
-<a href="http://bet.qa.psddev.com/testBetVideo/test2.jsp">test rock</a>
+Next link gives Real husband with ad configured on DFP
+<a href="test2.jsp?video=real">test real</a>
 <br/>
-This gives Real husband using Bryan's code
-<a href="http://bet.qa.psddev.com/testBetVideo/test2.jsp?video=real">test real</a>
+
+<h2> test BET video with ad configured using mRSS</h2>
+This link will give you full episode video Black girl rock with ad configured using mRSS
+<a href="test.jsp">test rock</a>
 <br/>
-This link will give you full episode video Black girl rock from Durga using Steve's code
-<a href="http://bet.qa.psddev.com/testBetVideo/test.jsp">test rock</a>
-<br/>
-This gives Real husband using Steve's code
-<a href="http://bet.qa.psddev.com/testBetVideo/test.jsp?video=real">test real</a>
+Next link gives Real husband with ad configured using mRSS
+<a href="test.jsp?video=real">test real</a>
+<br />
+
+<h2>Universal player for all platforms, integrated with Flash and html5</h2>
+This link will give you full episode video Black girl rock on all platforms with ad configured on DFP
+<a href="betall.jsp">test rock</a>
+
 
 </body>
 </html>
