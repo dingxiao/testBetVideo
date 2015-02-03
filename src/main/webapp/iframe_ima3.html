@@ -58,8 +58,8 @@
             <div id="largePlay" class="className" > </div>
 
             <video id="content" style="width:100%; height:100%;"></video>
-            <div id="adcontainer"></div>
         </div>
+            <div id="adcontainer"></div>
     </div>
 
 
@@ -230,7 +230,11 @@ var contentEndedListener;
             this.controller.adClicked();
         }
         if (adEvent.type == google.ima.AdEvent.Type.PAUSED) {
-        	//$('#largePlay').show(); after start, no need to show click
+            //$('#largePlay').show(); after start, no need to show click
+        }
+        if (adEvent.type == google.ima.AdEvent.Type.COMPLETE) {
+        	if (ub.isAndroid)
+        	this.controller.resumeAfterAd();//this helps samsung default browser, need to check mid roll--ding
         }
     };
 
@@ -461,7 +465,8 @@ var contentEndedListener;
             this.adsDone = true;
             return;
         }
-
+        //need to hide button on andriod, also need to handle play event from player
+        //this.playButton.style.display = 'none';
         if (this.adsActive) {
             if (this.playing) {
                 this.adsController.pause();
@@ -612,7 +617,7 @@ var contentEndedListener;
                 });
             });
     container.dispatchEvent(new Event('resize'));
-
+    //$('#videoplayer').resize();
     // Create the main controller and wait for the play event to start
     var mainController = null;
     window.onload = function() {
