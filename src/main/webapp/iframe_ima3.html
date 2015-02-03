@@ -233,7 +233,7 @@ var contentEndedListener;
             //$('#largePlay').show(); after start, no need to show click
         }
         if (adEvent.type == google.ima.AdEvent.Type.COMPLETE) {
-        	if (ub.isAndroid)
+        	if (BrowserUtils.isAndroid)
         	this.controller.resumeAfterAd();//this helps samsung default browser, need to check mid roll--ding
         }
     };
