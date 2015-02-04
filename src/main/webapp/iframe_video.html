@@ -43,12 +43,10 @@
   </head>
 
   <body>
-    <div id="mainContainer">
-      <div id="content">
-        <video id="contentElement" autoplay="autoplay" controls="controls" style="width:100%; height:100%;">
-        </video>
-      </div>
-      <div id="adContainer"></div>
+    
+    <h2>test video from youtube</h2>
+    <div style="width:500px; height:400px;">
+    <video id="contentElement" class="_mnmb _mmdb" controls="true" x-webkit-airplay="allow" data-youtube-id="qtsNbxgPngA" title="Jimmy Fallon&nbsp;Blew a Chance to Date Nicole Kidman"  ></video>
     </div>
     <button id="playButton">Play</button>
     <!-- 
@@ -56,6 +54,7 @@
      -->
     <script src="http://s0.2mdn.net/instream/html5/ima3_debug.js"></script>
     <script type="text/javascript" >
+    var youTubesrc="http://r16---sn-p5qlsm7r.googlevideo.com/videoplayback?sver=3&amp;app=youtube_mobile&amp;yms=KmXNdd1zVPg&amp;mt=1423075576&amp;pl=21&amp;mv=m&amp;ms=au&amp;signature=4EEB439274F3C9D23AA2A82202F27E15EFF8957D.77503CAB7FCB99ECB5CC8622D630C488683BBC0F&amp;key=yt5&amp;mm=31&amp;id=o-AAWQ635odnvYqSqfc1cmyEbP7qwb5ysxwhwQnyWdHCUm&amp;el=watch&amp;source=youtube&amp;ip=38.104.236.154&amp;fexp=904847%2C907263%2C913441%2C914924%2C916601%2C927622%2C930676%2C931361%2C943917%2C947225%2C948124%2C952302%2C952605%2C952612%2C952901%2C955301%2C957201%2C959701&amp;itag=18&amp;dnc=1&amp;initcwndbps=1182500&amp;ratebypass=yes&amp;ipbits=0&amp;expire=1423097262&amp;sparams=id%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Cmm%2Cms%2Cmv%2Cnh%2Cpl%2Cratebypass%2Csource%2Cupn%2Cexpire&amp;upn=LJWrtZtITx4&amp;nh=EAM&amp;cpn=23cUV5FYLF7NZl_k&amp;ptk=NBCU_Shows&amp;oid=NDVoivKqNStbe-D9hFASEw&amp;ptchn=8-Th83bH_thdKZDJCrn88g&amp;pltype=content&amp;c=MWEB&amp;cver=html5";
     var BrowserUtils = {},
     query = {},
     ub = BrowserUtils,
@@ -105,14 +104,30 @@ function init() {
        requestAdsDone = false;
        playButton = document.getElementById('playButton');
        // Listen for click events from the play button or the player
-       //videoContent.addEventListener('play', clickHandler, false);
-       playButton.addEventListener('click',clickHandler, false);
+       videoContent.addEventListener('play', clickHandler, false);
+       //playButton.addEventListener('click',clickHandler, false);
 }
 function clickHandler(){
+    // Listen for the loadedmetadata event to seek the video after mid-rolls
+    videoContent.addEventListener('loadedmetadata', loadedMetadataHandler);
 	   videoContent.load();
 	   //need this???? no, this will start video wiout ad
-	   videoContent.play();
+	   //videoContent.play();
 }
+function loadedMetadataHandler() {
+    videoContent.removeEventListener('play', clickHandler, false);
+    videoContent.removeEventListener('loadedmetadata', loadedMetadataHandler, false);
+    videoContent.play();
+    if (videoContent.seekable.length) {
+        // Video is in a seekable state
+    	//videoContent.play();
+    	console.log('video seekable');
+    } else {
+        // Video isn't seekable yet, try again in 100ms
+        //setTimeout(loadedMetadataHandler, 500);
+    	console.log('video NOT seekable');
+    }
+};
 
  // Wire UI element references and UI event listeners.
  init();

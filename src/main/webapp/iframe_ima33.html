@@ -99,6 +99,9 @@
 function init() {
 	   videoContent = document.getElementById('contentElement');
 	   videoContent.src = videoURL;
+       if (posterURL) {
+           videoContent.poster = posterURL;
+       }
 	   requestAdsDone = false;
 	   playButton = document.getElementById('playButton');
        // Listen for click events from the play button or the player

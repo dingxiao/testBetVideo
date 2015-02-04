@@ -57,7 +57,7 @@
         <div id="videoplayer">
             <div id="largePlay" class="className" > </div>
 
-            <video id="content" style="width:100%; height:100%;"></video>
+            <video id="content" autoplay="autoplay" controls="controls" style="width:100%; height:100%;"></video>
         </div>
             <div id="adcontainer"></div>
     </div>
@@ -230,7 +230,7 @@
     };
 
     AdsController.prototype.onAdEvent = function(adEvent) {
-        console.log('Ad event: ' + adEvent.type);
+        console.log('ima3 Ad event: ' + adEvent.type);
 
         if (adEvent.type == google.ima.AdEvent.Type.CLICK) {
             this.controller.adClicked();
@@ -247,7 +247,7 @@
 
 
     AdsController.prototype.onAdError = function(adErrorEvent) {
-        console.log('Ad error: ' + adErrorEvent.getError().toString());
+        console.log('ima3 Ad error: ' + adErrorEvent.getError().toString());
         if (this.adsManager) {
             //this.adsManager.destroy();
         }
@@ -334,7 +334,7 @@
         this.contentPlayer.addEventListener('pause', playerHandler, false);
         this.contentPlayer.addEventListener('ended', playerHandler, false);
         //have error in full episode, add below--ding
-        this.contentPlayer.src = videoURL;
+        //this.contentPlayer.src = videoURL;
         this.contentPlayer.play();
     };
 
@@ -499,7 +499,8 @@
 
         // Re-set the video source to the content video
         this.playerController.setSrc(this.contentSrc);
-        this.playerController.load();
+        //load only first time
+        //this.playerController.load();
         this.playerController.play();
         this.adsActive = false;
     };
