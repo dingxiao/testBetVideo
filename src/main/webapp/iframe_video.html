@@ -1,0 +1,121 @@
+<html>
+  <head>
+    <title>IMA HTML5 Player</title>
+    <style type="text/css">
+        #mainContainer {
+          position: relative;
+          width: 640px;
+          height: 360px;
+        }
+        
+        #content, #adContainer {
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          width: 640px;
+          height: 360px;
+        }
+        
+        #contentElement {
+          width: 640px;
+          height: 360px;
+          overflow: hidden;
+        }
+        
+        #playButton {
+          margin-top:10px;
+          vertical-align: top;
+          width: 350px;
+          height: 60px;
+          padding: 0;
+          font-size: 22px;
+          color: white;
+          text-align: center;
+          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+          background: #2c3e50;
+          border: 0;
+          border-bottom: 2px solid #22303f;
+          cursor: pointer;
+          -webkit-box-shadow: inset 0 -2px #22303f;
+          box-shadow: inset 0 -2px #22303f;
+        }    
+    </style>
+  </head>
+
+  <body>
+    <div id="mainContainer">
+      <div id="content">
+        <video id="contentElement" autoplay="autoplay" controls="controls" style="width:100%; height:100%;">
+        </video>
+      </div>
+      <div id="adContainer"></div>
+    </div>
+    <button id="playButton">Play</button>
+    <!-- 
+    <script type="text/javascript" src="//imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
+     -->
+    <script src="http://s0.2mdn.net/instream/html5/ima3_debug.js"></script>
+    <script type="text/javascript" >
+    var BrowserUtils = {},
+    query = {},
+    ub = BrowserUtils,
+    ua = navigator.userAgent,
+    queryNameVals = window.location.search.substring(1).split("&amp;").join("&").split("&");
+
+    for (var i=0; i<queryNameVals.length; i++){
+    var queryNameVal = queryNameVals[i].split("=");
+    query[queryNameVal[0]] = queryNameVal[1];
+    }
+    
+    var videoURL = decodeURIComponent(query.video),
+    adURL = decodeURIComponent(query.adTag),
+    posterURL = decodeURIComponent(query.poster);
+    
+    ub.isWebkit = ua.indexOf("WebKit") !== -1;
+    ub.isChrome = ua.indexOf("Chrome") !== -1;
+    ub.isIpad = ua.indexOf("iPad") !== -1;
+    ub.isIphone = ua.indexOf("iPhone") !== -1;
+    ub.isAndroid = ua.indexOf("Android") !== -1;
+    ub.isUIWebView = /(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/i.test(ua)
+    ub.isDesktopWebkit = ub.isWebkit && !ub.isIpad && !ub.isIphone;
+    console.log(ua);
+    
+    console.log('video src=' + videoURL);
+    console.log('query adURL=' + adURL);
+
+ var adsManager;
+ var adsLoader;
+ var adDisplayContainer;
+ var intervalTimer;
+ var playButton;
+ var videoContent;
+ //var contentEndedListener
+ var requestAdsDone = false;
+ var videoStarted = false;
+ var videoLoadedMetadata = false;
+ var adsLoaded = false;
+ var lastPauseTime = 0;
+
+function init() {
+       videoContent = document.getElementById('contentElement');
+       videoContent.src = videoURL;
+       if (posterURL) {
+    	   videoContent.poster = posterURL;
+       }
+       requestAdsDone = false;
+       playButton = document.getElementById('playButton');
+       // Listen for click events from the play button or the player
+       //videoContent.addEventListener('play', clickHandler, false);
+       playButton.addEventListener('click',clickHandler, false);
+}
+function clickHandler(){
+	   videoContent.load();
+	   //need this???? no, this will start video wiout ad
+	   videoContent.play();
+}
+
+ // Wire UI element references and UI event listeners.
+ init();
+    </script>
+  </body>
+</html>

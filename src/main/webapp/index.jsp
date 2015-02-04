@@ -34,6 +34,7 @@ Next link gives Real husband with ad configured using mRSS
 This link will give you full episode video Black girl rock on all platforms with ad configured on DFP
 <a href="betall.jsp">test rock</a>
 
-
+<h2>direct to bet page</h2>
+<a href="http://www.bet.com/video/blackgirlsrock/2013/exclusives/the-full-show.html">full show</a>
 </body>
 </html>

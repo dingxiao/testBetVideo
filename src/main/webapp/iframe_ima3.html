@@ -87,13 +87,18 @@
     ub.isAndroid = ua.indexOf("Android") !== -1;
     ub.isUIWebView = /(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/i.test(ua)
     ub.isDesktopWebkit = ub.isWebkit && !ub.isIpad && !ub.isIphone;
+    //try to detect samsung default browser which is android browser
+    //var regExAppleWebKit = new RegExp(/AppleWebKit\/([\d.]+)/);
+    //var resultAppleWebKitRegEx = regExAppleWebKit.exec(ua),
+    //var appleWebKitVersion = (resultAppleWebKitRegEx === null ? null : parseFloat(regExAppleWebKit.exec(ua)[1]));
+    var isSamsung = ua.indexOf("SAMSUNG") !== -1;
+    ub.isAndroidSamsung = ub.isAndroid && isSamsung;
     console.log(ua);
 
-  console.log('video src=' + videoURL);
-  console.log('query adURL=' + adURL);
-    adURL00 = 'http://ad.doubleclick.net/pfadx/bet.com/Video;n=juicy-j-106-and-park-3495;sub=106andpark;prod=;sz=250x250;show=106andpark;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;tile=4;ct=indivmediapage;loc=4;anum=1;domainname=www.bet.com;ord=1408749495295;prog=clip'
+    console.log('video src=' + videoURL);
+    console.log('query adURL=' + adURL);
 
-var contentEndedListener; 
+    var contentEndedListener; 
 
     // ------------------------------------------------
     // Ads Controllers
@@ -157,7 +162,8 @@ var contentEndedListener;
     };
 
     AdsController.prototype.processAdsManager = function(adsManager) {
-        // Attach the pause/resume events.
+    	console.log('Process Ads message.');
+    	// Attach the pause/resume events.
         adsManager.addEventListener(
                 google.ima.AdEvent.Type.CONTENT_PAUSE_REQUESTED,
                 this.onContentPauseRequested,
@@ -233,8 +239,9 @@ var contentEndedListener;
             //$('#largePlay').show(); after start, no need to show click
         }
         if (adEvent.type == google.ima.AdEvent.Type.COMPLETE) {
-        	if (BrowserUtils.isAndroid)
-        	this.controller.resumeAfterAd();//this helps samsung default browser, need to check mid roll--ding
+             if (!this.contentCompleteCalled && BrowserUtils.isAndroidSamsung) {
+                 this.controller.resumeAfterAd();
+             }
         }
     };
 
