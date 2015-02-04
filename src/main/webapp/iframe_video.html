@@ -1,52 +1,60 @@
 <html>
   <head>
     <title>IMA HTML5 Player</title>
-    <style type="text/css">
-        #mainContainer {
-          position: relative;
-          width: 640px;
-          height: 360px;
+    <style type="text/css" media="all">
+        html, body { margin: 0; padding: 0; border: 0; }
+        body {
+            overflow: hidden;
+            -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+            left:0;
+            right:0;
+            top:0;
+            bottom:0;
         }
-        
-        #content, #adContainer {
-          position: absolute;
-          top: 0px;
-          left: 0px;
-          width: 640px;
-          height: 360px;
-        }
-        
-        #contentElement {
-          width: 640px;
-          height: 360px;
-          overflow: hidden;
-        }
-        
-        #playButton {
-          margin-top:10px;
-          vertical-align: top;
-          width: 350px;
-          height: 60px;
-          padding: 0;
-          font-size: 22px;
-          color: white;
-          text-align: center;
-          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
-          background: #2c3e50;
-          border: 0;
-          border-bottom: 2px solid #22303f;
-          cursor: pointer;
-          -webkit-box-shadow: inset 0 -2px #22303f;
-          box-shadow: inset 0 -2px #22303f;
-        }    
-    </style>
-  </head>
 
-  <body>
-    
-    <h2>test video from youtube</h2>
-    <div style="width:500px; height:400px;">
-    <video id="contentElement" class="_mnmb _mmdb" controls="true" x-webkit-airplay="allow" data-youtube-id="qtsNbxgPngA" title="Jimmy Fallon&nbsp;Blew a Chance to Date Nicole Kidman"  ></video>
+        #mainContainer {
+            overflow:hidden;
+            position: absolute;
+            left:0;
+            right:0;
+            top:0;
+            bottom:0;
+
+        }
+
+        #videoplayer  {
+            position: absolute;
+            background-color: #000;
+            width: 100%;
+            height: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+
+
+        #largePlay {
+            background:url(images/large_play_arrow.png) no-repeat;
+            width: 110px;
+            height: 120px;
+            z-index: 200;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="mainContainer">
+        <div id="videoplayer">
+    <video id="contentElement" style="width:100%; height:100%;" class="_mnmb _mmdb" controls="true" x-webkit-airplay="allow" ></video>
+
+        </div>
+            <div id="adcontainer"></div>
+    </div>
+
+    <div id="mainContainer22">
+        <div id="videoplayer22">
+        </div>
     </div>
     <button id="playButton">Play</button>
     <!-- 
