@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>HTML5 Widget</title>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="http://s0.2mdn.net/instream/html5/ima3_debug.js"></script>
     <script src="s_code.js"></script>
     <script>
@@ -57,7 +57,7 @@
         <div id="videoplayer">
             <div id="largePlay" class="className" > </div>
 
-            <video id="content" autoplay="autoplay" controls="true" x-webkit-airplay="allow" style="width:100%; height:100%;"></video>
+            <video id="content" controls="true" x-webkit-airplay="allow" style="width:100%; height:100%;"></video>
         </div>
             <div id="adcontainer"></div>
     </div>
@@ -616,21 +616,27 @@
     if (BrowserUtils.isIphone ){ //|| BrowserUtils.isAndroid) { android needs button to start, iphone does not
         playButton.style.display = 'none';
     }
-    container.addEventListener('resize',
-            function(){
-                $('#largePlay').css({
-                    position:'absolute',
-                    left: ($('#videoplayer').width()/2 - $('#largePlay').outerWidth()/2),
-                    top: ($('#videoplayer').height()/2 - $('#largePlay').outerHeight()/2)
-                });
-            });
-    container.dispatchEvent(new Event('resize'));
+    //container.addEventListener('resize', resizeButton);
+    function resizeButton(){
+        $('#largePlay').css({
+            position:'absolute',
+            left: ($('#videoplayer').width()/2 - $('#largePlay').outerWidth()/2),
+            top: ($('#videoplayer').height()/2 - $('#largePlay').outerHeight()/2)
+        });
+    }
+    //container.dispatchEvent(new Event('resize'));
     //$('#videoplayer').resize();
     // Create the main controller and wait for the play event to start
     var mainController = null;
-    window.onload = function() {
-        mainController = new MainController(new PlayerController());
-    };
+    console.log('before set load');
+    //window.onload = function() {
+    $(window).load(function() {
+    	resizeButton();
+    	console.log('before: construct player');
+    	var play = new PlayerController();
+    	console.log('after get: player, before main control');
+    	mainController = new MainController(play);
+    });
 })();
 </script>
 

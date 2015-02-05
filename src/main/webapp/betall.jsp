@@ -43,7 +43,7 @@ if (video == null){
 	
 	<!-- get js from  http://www.bet.com/video/blackgirlsrock/2013/exclusives/the-full-show.html on 1/30/2015-->
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     
 <script type="text/javascript" src="http://serve.a-widget.com/kickFlash/scripts/swfobject2.js?2"></script>
 
@@ -57,7 +57,7 @@ var video = "<%=video %>";
 if (videoParam.indexOf("http") >= 0){
     //video is already encodede
     iframeTemplate = "iframe.html?video=" + videoParam;
-     console.log('got video from db:' + videoParam);
+     //console.log('got video from db:' + videoParam);
 }
 else{
     iframeTemplate = "iframe_ima3.html?video=https%3A%2F%2Fcp162205-f.akamaihd.net%2Fi%2Fvideohub%2Fbgr%2F2013%2Ffull%2Fbetcom_bbgr13001_act1_cc_%2C448x252_450%2C624x352_800%2C640x360_1200%2C640x360_1800%2C1280x720_2600%2C.mp4.csmil%2Fmaster.m3u8%3Fhdnea%3D{TOKEN}&amp;adTag=http%3A%2F%2Fad.doubleclick.net%2Fpfadx%2Fbet.com%2FVideo%3Bn%3Dthe-full-show%3Bsub%3Dblackgirlsrock%3Bprod%3D%3Bsz%3D250x250%3Bshow%3Dblackgirlsrock%3Bembedshow%3D%26lt%3Bparameters.betembedshow%26gt%3B%3Bembedn%3D%26lt%3Bparameters.betembedn%26gt%3B%3Btile%3D4%3Bct%3Dindivmediapage%3Bloc%3D4%3Banum%3D1%3Bdomainname%3Dwww.bet.com%3Bord%3D1422367502208%3Bprog%3Dfullepisode&amp;autoPlay=false&amp;poster=http%3A%2F%2Fwww.bet.com%2Fcontent%2Fdam%2Fbetcom%2Fimages%2F2013%2F11%2FShows%2FBobby-Jones-Gospel%2Fbgr13_fullshow2.jpg&amp;omnitureTracking=prop5%3DBlack%2BGirls%2BRock%26eVar5%3DBlack%2BGirls%2BRock%26prop6%3Dunknown%26eVar6%3Dunknown%26eVar17%3Dvideo%253Ablackgirlsrock%253A2013%253Aexclusives%253Athe-full-show%26prop48%3D2013%26eVar48%3D2013%26prop49%3Dunknown%26eVar49%3Dunknown%26prop39%3D0FullEpisode%26eVar39%3D0FullEpisode%26prop45%3Dunknown%26eVar45%3Dunknown%26prop31%3D9%26prop13%3Dvideo%26prop54%3Dunknown%26eVar54%3Dunknown%26prop55%3D11%2F04%2F13%26eVar55%3D11%2F04%2F13%26prop56%3Dunknown%26eVar56%3Dunknown%26prop57%3DArts%2Band%2BCulture%26eVar57%3DArts%2Band%2BCulture%26prop58%3Dlong%26eVar58%3Dlong%26mediaName%3DBlack%2BGirls%2BRock%253A%2BBlack%2BGirls%2BRock%2521%2B2013%2BFull%2BShow";
@@ -210,9 +210,12 @@ var omnitureTrackingParam = encodeURIComponent("prop5=Black+Girls+Rock&eVar5=Bla
 var callback = function(e){ 
     if (e.success==false) { 
     	var inner = '<iframe src="' + iframeSource +'" height="386" width="628" frameborder="0" scrolling="no" style="border:none;overflow:hidden;width:628px;height:386px"></iframe>'; 
-    	console.log('got video html:' + inner)
+    	//console.log('got video html:' + inner)
         document.getElementById("bq_videoPlayer").innerHTML = inner;
-    } 
+        document.getElementById("msg").innerHTML = "use html5 due to flash fail";
+    } else{
+    	document.getElementById("msg").innerHTML = "use flash";
+    }
 };
 
         
@@ -220,7 +223,7 @@ function playVideo(){
     swfobject.embedSWF(swfURL, "bq_videoPlayer", "628","386",
              "10", expressInstallURL, flashvars, params, attributes, callback);
 
-     $('.error_msg').show();          
+     //$('.error_msg').show();          
 }
 
 </script>
@@ -235,5 +238,6 @@ function playVideo(){
 <body>
 	<!-- Put this <div> anywhere in the <body> of your page where you want the widget to show up. -->
 	<div id="bq_videoPlayer"></div>
+	<div id="msg"></div>
 </body>
 </html>

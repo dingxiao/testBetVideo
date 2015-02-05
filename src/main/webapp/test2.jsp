@@ -24,6 +24,7 @@ if (video != null){
 if (video == null){
     video = "rock";
 }
+response.setHeader("Access-Control-Allow-Origin","*");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
