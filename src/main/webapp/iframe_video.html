@@ -125,14 +125,14 @@ function clickHandler(){
 function loadedMetadataHandler() {
     videoContent.removeEventListener('play', clickHandler, false);
     videoContent.removeEventListener('loadedmetadata', loadedMetadataHandler, false);
-    videoContent.play();
+    //videoContent.play();
     if (videoContent.seekable.length) {
         // Video is in a seekable state
-    	//videoContent.play();
+    	videoContent.play();
     	console.log('video seekable');
     } else {
         // Video isn't seekable yet, try again in 100ms
-        //setTimeout(loadedMetadataHandler, 500);
+        setTimeout(loadedMetadataHandler, 500);
     	console.log('video NOT seekable');
     }
 };

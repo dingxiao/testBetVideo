@@ -99,6 +99,7 @@
     console.log('query adURL=' + adURL);
 
     var contentEndedListener; 
+    var mainController = null;
 
     // ------------------------------------------------
     // Ads Controllers
@@ -239,9 +240,9 @@
             //$('#largePlay').show(); after start, no need to show click
         }
         if (adEvent.type == google.ima.AdEvent.Type.COMPLETE) {
-             if (!this.contentCompleteCalled && BrowserUtils.isAndroidSamsung) {
-                 this.controller.resumeAfterAd();
-             }
+             //if (!this.contentCompleteCalled && BrowserUtils.isAndroidSamsung) {
+               //  this.controller.resumeAfterAd();
+             //}
         }
     };
 
@@ -325,19 +326,69 @@
     };
 
     PlayerController.prototype.play = function() {
-        this.contentPlayer.setAttribute('controls', 'controls' );
-        this.contentPlayer.setAttribute('poster', '' );
+        this.contentPlayer.setAttribute('controls', 'true' );
+        this.contentPlayer.setAttribute('poster', '');
 
         // Register for Omniture events
         this.contentPlayer.addEventListener('loadedmetadata', playerHandler, false);
         this.contentPlayer.addEventListener('play', playerHandler, false);
         this.contentPlayer.addEventListener('pause', playerHandler, false);
         this.contentPlayer.addEventListener('ended', playerHandler, false);
+        this.contentPlayer.addEventListener('webkitendfullscreen', this.onPlayerEndFullscreen, false);
+        //this.contentPlayer.addEventListener('webkitbeginfullscreen', this.onPlayerEnterFullscreen, false);
+        //this.contentPlayer.addEventListener('webkitenterfullscreen', this.onPlayerEnterFullscreen, false);
         //have error in full episode, add below--ding
-        //this.contentPlayer.src = videoURL;
+        if (mainController && !mainController.adsActive)
+           this.contentPlayer.src = videoURL;
         this.contentPlayer.play();
     };
 
+    PlayerController.prototype.onPlayerEndFullscreen = function() {
+        //this.contentPlayer.pause();
+        if (mainController && !mainController.adsActive){
+         	console.log('ima3 onPlayerEndFullscreen restart ');
+         	console.log(mainController);
+//          	mainController.playerController.contentPlayer = document.getElementById('content');
+//          	mainController.playerController.adContainer = document.getElementById('adcontainer');
+//          	mainController.playerController.videoPlayerContainer = document.getElementById('videoplayer');
+
+//          	mainController.playerController.width = 640;
+//          	mainController.playerController.height = 360;
+
+            if (posterURL) {
+            	mainController.playerController.contentPlayer.poster = null;
+            }
+//             mainController.playerController.contentPlayer.src = videoURL;
+//             mainController.playerController.contentPlayer.removeEventListener('play', playerHandler, false);
+//             mainController.playerController.contentPlayer.addEventListener('play', mainController.playerController.onPlayerEnterFullscreen, false);
+//             mainController.playerController.contentPlayer.load();
+            //mainController.playerController.contentPlayer.webkitExitFullscreen();
+            mainController.playerController.contentPlayer.setAttribute('controls', 'true' );
+         var adcontainer2 = document.getElementById('adcontainer');
+         adcontainer2.style.display = 'none';
+            //console.log(contentPlayer2);
+        } else{
+        	console.log('ima3 ad active ');
+            var adcontainer2 = document.getElementById('adcontainer');
+            adcontainer2.style.display = 'block';
+        }
+        //may need adsManager.destroy();
+    	console.log('ima3 done button exit ');
+    };
+    
+    PlayerController.prototype.onPlayerEnterFullscreen = function() {
+    	console.log('ima3 done button start ');
+    	mainController.playerController.contentPlayer.removeEventListener('play', mainController.playerController.onPlayerEnterFullscreen, false);
+    	mainController.playerController.contentPlayer.addEventListener('play', playerHandler, false);
+    	if (mainController){
+    		if (mainController.allEnded){
+    			mainController.adsDone = false;
+    		}
+    		mainController.playing = false
+    		mainController.onClick();
+    	}
+        
+    };
     PlayerController.prototype.pause = function() {
         this.contentPlayer.pause();
     };
@@ -419,6 +470,7 @@
         this.playing = false;
         this.adsActive = false;
         this.adsDone = false;
+        this.allEnded = false;
 
         if (BrowserUtils.isIphone ) { //|| BrowserUtils.isAndroid) 
             this.playButton.style.display = 'none';
@@ -534,6 +586,7 @@
 
     MainController.prototype.onContentEnded = function() {
         this.adsController.contentEnded();
+        this.allEnded = true;
     };
 
 
@@ -624,10 +677,13 @@
             top: ($('#videoplayer').height()/2 - $('#largePlay').outerHeight()/2)
         });
     }
+    function restartDone(){
+    	console.log('restart player due to done');
+    	window.location.reload();
+    }
     //container.dispatchEvent(new Event('resize'));
     //$('#videoplayer').resize();
     // Create the main controller and wait for the play event to start
-    var mainController = null;
     console.log('before set load');
     //window.onload = function() {
     $(window).load(function() {
