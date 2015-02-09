@@ -348,24 +348,13 @@
         if (mainController && !mainController.adsActive){
          	console.log('ima3 onPlayerEndFullscreen restart ');
          	console.log(mainController);
-//          	mainController.playerController.contentPlayer = document.getElementById('content');
-//          	mainController.playerController.adContainer = document.getElementById('adcontainer');
-//          	mainController.playerController.videoPlayerContainer = document.getElementById('videoplayer');
-
-//          	mainController.playerController.width = 640;
-//          	mainController.playerController.height = 360;
 
             if (posterURL) {
             	mainController.playerController.contentPlayer.poster = null;
             }
-//             mainController.playerController.contentPlayer.src = videoURL;
-//             mainController.playerController.contentPlayer.removeEventListener('play', playerHandler, false);
-//             mainController.playerController.contentPlayer.addEventListener('play', mainController.playerController.onPlayerEnterFullscreen, false);
-//             mainController.playerController.contentPlayer.load();
-            //mainController.playerController.contentPlayer.webkitExitFullscreen();
             mainController.playerController.contentPlayer.setAttribute('controls', 'true' );
-         var adcontainer2 = document.getElementById('adcontainer');
-         adcontainer2.style.display = 'none';
+            var adcontainer2 = document.getElementById('adcontainer');
+            adcontainer2.style.display = 'none';
             //console.log(contentPlayer2);
         } else{
         	console.log('ima3 ad active ');
