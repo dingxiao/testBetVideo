@@ -76,10 +76,25 @@
         query[queryNameVal[0]] = queryNameVal[1];
     }
 
-    var videoURL = decodeURIComponent(query.video),
-        adURL = decodeURIComponent(query.adTag),
-        posterURL = decodeURIComponent(query.poster);
+    var videoURLArray = [];
+    var adURLArray = [];
+    var posterURLArray = [];
+    videoURLArray[0] = decodeURIComponent(query.video);
+    adURLArray[0] = decodeURIComponent(query.adTag);
+    posterURLArray[0] = decodeURIComponent(query.poster);
+    videoURLArray[1] = decodeURIComponent(query.video) + '&seg=1';
+    adURLArray[1] = decodeURIComponent(query.adTag);
+    posterURLArray[1] = decodeURIComponent(query.poster);
+    videoURLArray[2] = decodeURIComponent(query.video) + '&seg=2';
+    adURLArray[2] = decodeURIComponent(query.adTag);
+    posterURLArray[2] = decodeURIComponent(query.poster);
+    
+    videoURL = videoURLArray[0];
+    adURL = adURLArray[0];
+    posterURL = posterURLArray[0];
 
+    var totalNumSegments = 3;
+    
     ub.isWebkit = ua.indexOf("WebKit") !== -1;
     ub.isChrome = ua.indexOf("Chrome") !== -1;
     ub.isIpad = ua.indexOf("iPad") !== -1;
@@ -138,7 +153,11 @@
     };
 
     AdsController.prototype.requestAds = function(adTagUrl) {
-        var adsRequest = new google.ima.AdsRequest();
+        if (this.adsManager){
+        	this.adsManager.destroy();
+        	this.adsManager = null;
+        }
+    	var adsRequest = new google.ima.AdsRequest();
 
         adsRequest.adTagUrl = adTagUrl;
 
@@ -158,13 +177,13 @@
         var adsRenderingSettings = new google.ima.AdsRenderingSettings();
         adsRenderingSettings.restoreCustomPlaybackStateOnAdBreakComplete = false;
         this.adsManager = adsManagerLoadedEvent.getAdsManager(
-        		this.player.contentPlayer, adsRenderingSettings);
+                this.player.contentPlayer, adsRenderingSettings);
         this.processAdsManager(this.adsManager);
     };
 
     AdsController.prototype.processAdsManager = function(adsManager) {
-    	console.log('Process Ads message.');
-    	// Attach the pause/resume events.
+        console.log('Process Ads message.');
+        // Attach the pause/resume events.
         adsManager.addEventListener(
                 google.ima.AdEvent.Type.CONTENT_PAUSE_REQUESTED,
                 this.onContentPauseRequested,
@@ -223,7 +242,8 @@
     };
 
     AdsController.prototype.onContentResumeRequested = function(adErrorEvent) {
-        // Without this check the video starts over from the beginning on a
+    	console.log('ima3 Ad event: ' + 'request content resume');
+    	// Without this check the video starts over from the beginning on a
         // post-roll's CONTENT_RESUME_REQUESTED
         if (!this.contentCompleteCalled) {
             this.controller.resumeAfterAd();
@@ -244,6 +264,10 @@
                //  this.controller.resumeAfterAd();
              //}
         }
+        if (adEvent.type == google.ima.AdEvent.Type.allAdsCompleted) {
+        	//this.adsManager.destroy();
+        	this.controller.adsActive = false;
+        }
     };
 
 
@@ -262,8 +286,10 @@
     };
 
     AdsController.prototype.contentEnded = function() {
-        this.contentCompleteCalled = true;
+    	console.log('ima3 Ad event: content ended');
+    	this.contentCompleteCalled = true;
         this.adsLoader.contentComplete();
+        startNextSegment();
     };
 
 
@@ -317,7 +343,7 @@
         // playback.
         if (this.isMobilePlatform()) {
             //for mobile, 1 load content 2 load metadata for player 3 request ad
-        	this.contentPreloadHandler = contentLoadedAction;
+            this.contentPreloadHandler = contentLoadedAction;
             this.contentPlayer.addEventListener(
                     'loadedmetadata',
                     this.contentPreloadHandler,
@@ -341,14 +367,14 @@
     };
 
     PlayerController.prototype.play = function() {
-    	if (BrowserUtils.isIphone ){
-    		this.contentPlayer.setAttribute('controls', 'true' );
-    	} else{
-    		this.contentPlayer.setAttribute('controls', 'controls' );
-    	}
-    	
+        if (BrowserUtils.isIphone ){
+            this.contentPlayer.setAttribute('controls', 'true' );
+        } else{
+            this.contentPlayer.setAttribute('controls', 'controls' );
+        }
+        
         this.contentPlayer.setAttribute('poster', '');
-
+        console.log('ima3 player event: play ' + videoURL);
         // Register for Omniture events
         this.contentPlayer.addEventListener('loadedmetadata', playerHandler, false);
         this.contentPlayer.addEventListener('play', playerHandler, false);
@@ -367,41 +393,41 @@
     PlayerController.prototype.onPlayerEndFullscreen = function() {
         //this.contentPlayer.pause();
         if (mainController && !mainController.adsActive){
-         	console.log('ima3 onPlayerEndFullscreen restart ');
-         	console.log(mainController);
+            console.log('ima3 onPlayerEndFullscreen restart ');
+            console.log(mainController);
 
             if (posterURL) {
-            	mainController.playerController.contentPlayer.poster = null;
+                mainController.playerController.contentPlayer.poster = null;
             }
             //mainController.playerController.contentPlayer.setAttribute('controls', 'true' );
             if (BrowserUtils.isIphone ){
-            	mainController.playerController.contentPlayer.setAttribute('controls', 'true' );
+                mainController.playerController.contentPlayer.setAttribute('controls', 'true' );
             } else{
-            	mainController.playerController.contentPlayer.setAttribute('controls', 'controls' );
+                mainController.playerController.contentPlayer.setAttribute('controls', 'controls' );
             }
             var adcontainer2 = document.getElementById('adcontainer');
             adcontainer2.style.display = 'none';
             //console.log(contentPlayer2);
         } else{
-        	console.log('ima3 ad active ');
+            console.log('ima3 ad active ');
             var adcontainer2 = document.getElementById('adcontainer');
             adcontainer2.style.display = 'block';
         }
         //may need adsManager.destroy();
-    	console.log('ima3 done button exit ');
+        console.log('ima3 done button exit ');
     };
     
     PlayerController.prototype.onPlayerEnterFullscreen = function() {
-    	console.log('ima3 done button start ');
-    	mainController.playerController.contentPlayer.removeEventListener('play', mainController.playerController.onPlayerEnterFullscreen, false);
-    	mainController.playerController.contentPlayer.addEventListener('play', playerHandler, false);
-    	if (mainController){
-    		if (mainController.allEnded){
-    			mainController.adsDone = false;
-    		}
-    		mainController.playing = false
-    		mainController.onClick();
-    	}
+        console.log('ima3 done button start ');
+        mainController.playerController.contentPlayer.removeEventListener('play', mainController.playerController.onPlayerEnterFullscreen, false);
+        mainController.playerController.contentPlayer.addEventListener('play', playerHandler, false);
+        if (mainController){
+            if (mainController.allEnded){
+                mainController.adsDone = false;
+            }
+            mainController.playing = false
+            mainController.onClick();
+        }
         
     };
 
@@ -564,7 +590,7 @@
         // Add the onContentEnded handler to trigger the post-roll when our content
         // is finished.
         this.playerController.registerVideoEndedCallback(this.contentEndedCallback);
-
+        console.log('resumeafterAd with content=' + this.contentSrc);
         // Re-set the video source to the content video
         this.playerController.setSrc(this.contentSrc);
         //load only first time
@@ -601,7 +627,8 @@
 
 
     MainController.prototype.onContentEnded = function() {
-        this.adsController.contentEnded();
+    	console.log('main controller on content ended');
+    	this.adsController.contentEnded();
         this.allEnded = true;
     };
 
@@ -639,6 +666,7 @@
 
     var videoOpened = false;
     var currentTime = 0;
+    var numSegment = 0;
     var videoContent = document.getElementById('content');
 
     function playerHandler(e){
@@ -672,10 +700,36 @@
             case 'ended':
                 console.log('Omniture: ended');
                 s.Media.stop(mediaName,currentTime);
-                s.Media.close(mediaName);
+                
+                if (numSegment+1 >= totalNumSegments){
+                    s.Media.close(mediaName);
+                }
+                else{
+                	if (mainController.adsController.contentCompleteCalled){
+                		startNextSegment();
+                	}
+                }
                 break;
             default:
                 break;
+        }
+    }
+    function startNextSegment(){
+        if ((numSegment + 1 < totalNumSegments) && !mainController.adsActive &&  mainController.adsController.contentCompleteCalled){
+	        numSegment = numSegment +1;
+	        console.log('start another segment: num=' + numSegment);
+	        videoURL = videoURLArray[numSegment];
+	        adURL = adURLArray[numSegment];
+	        posterURL = posterURLArray[numSegment];
+	        mainController.contentSrc = videoURLArray[numSegment];
+	        mainController.adTagUrl = adURLArray[numSegment];
+	        //mainController.posterURL = posterURLArray[0];
+	        mainController.adsController.contentCompleteCalled = false;
+	        mainController.adsActive = true;
+	        //mainController.playerController.registerVideoEndedCallback(mainController.contentEndedCallback)
+	        mainController.loadAds();
+            mainController.playerController.load();
+            //mainController.playerController.preloadContent(mainController.bind(mainController, mainController.contentPreloadHandler));
         }
     }
 
@@ -694,8 +748,8 @@
         });
     }
     function restartDone(){
-    	console.log('restart player due to done');
-    	window.location.reload();
+        console.log('restart player due to done');
+        window.location.reload();
     }
     function toggleFullScreen() {
         var contentVideo = document.getElementById('content');
@@ -728,11 +782,11 @@
     console.log('before set load');
     //window.onload = function() {
     $(window).load(function() {
-    	resizeButton();
-    	console.log('before: construct player');
-    	var play = new PlayerController();
-    	console.log('after get: player, before main control');
-    	mainController = new MainController(play);
+        resizeButton();
+        console.log('before: construct player');
+        var play = new PlayerController();
+        console.log('after get: player, before main control');
+        mainController = new MainController(play);
     });
 })();
 </script>
