@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<rss version="2.0"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:media="http://search.yahoo.com/mrss/"
+    xmlns:ka="http://kickapps.com/karss">
+    <channel>
+        <title>Full Show</title>
+        <link>http://www.bet.com/content/betcom/video/blackgirlsrock/2013/exclusives/the-full-show/_jcr_content/leftcol/videoplayer.mrss</link>
+        <description>Phenomenal women, must-see performances, beauty and grace met center stage at Black Girls Rock! 2013. Watch the full show.</description>
+        <pubDate>Mon, 4 Nov 2013 16:14:00 GMT</pubDate>
+        <dc:date>2013-11-04T16:14:00Z</dc:date>
+        
+        <item>
+            <title>Full Show</title>
+            <link>http://www.bet.com/video/blackgirlsrock/2013/exclusives/the-full-show.html</link>
+            <playlistMrssUrl>http%3A%2F%2Fwww.bet.com%2Fcontent%2Fbetcom%2Fvideo%2Fblackgirlsrock%2F2013%2Fexclusives%2Fthe-full-show%2F_jcr_content%2Fleftcol%2Fvideoplayer.videoplaylistmrss.mrss%3Fpt%3DEmbedFullPage%26type%3Dembedfullpage%26ordts%3Dy</playlistMrssUrl>
+            
+            <description>Phenomenal women, must-see performances, beauty and grace met center stage at Black Girls Rock! 2013. Watch the full show.</description>
+            <pubDate>Mon, 4 Nov 2013 16:14:00 GMT</pubDate>
+            <guid>da248834-d1c2-4c8b-a3f3-4ec8523670bb</guid>
+            <dc:creator>admin</dc:creator>
+            <dc:date>2013-11-04T16:14:00Z</dc:date>
+            <ka:omnitureTracking><![CDATA[prop5=Black+Girls+Rock&eVar5=Black+Girls+Rock&prop6=unknown&eVar6=unknown&eVar17=video%3Ablackgirlsrock%3A2013%3Aexclusives%3Athe-full-show&prop48=2013&eVar48=2013&prop49=unknown&eVar49=unknown&prop39=0FullEpisode&eVar39=0FullEpisode&prop45=unknown&eVar45=unknown&prop31=9&prop13=video&prop54=unknown&eVar54=unknown&prop55=11/04/13&eVar55=11/04/13&prop56=unknown&eVar56=unknown&prop57=Arts+and+Culture&eVar57=Arts+and+Culture&prop58=long&eVar58=long&mediaName=Black+Girls+Rock%3A+Black+Girls+Rock%21+2013+Full+Show]]></ka:omnitureTracking>
+            
+            <ka:closedCaption format="dfxp">http://www.bet.com/content/betcom/video/blackgirlsrock/2013/exclusives/the-full-show/jcr:content/leftcol/videoplayer/dfxp.xml</ka:closedCaption>
+            
+            
+            <ka:cuePoints>
+            
+           
+                    <ka:cuePoint>
+                           <ka:cuePointTime>0</ka:cuePointTime>
+                           <ka:cuePointData>
+                               <type>ad</type>
+                               <format>VAST 2.0</format>
+                               <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=1;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                           </ka:cuePointData>
+                    </ka:cuePoint>
+              
+                    <ka:cuePoint>
+                           <ka:cuePointTime>0</ka:cuePointTime>
+                           <ka:cuePointData>
+                               <type>ad</type>
+                               <format>VAST 2.0</format>
+                               <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=2;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                           </ka:cuePointData>
+                    </ka:cuePoint>
+              
+                            <ka:cuePoint>
+                                <ka:cuePointTime>12:48</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=3;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                            <ka:cuePoint>
+                                <ka:cuePointTime>12:48</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=4;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                            <ka:cuePoint>
+                                <ka:cuePointTime>12:48</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=5;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                            <ka:cuePoint>
+                                <ka:cuePointTime>12:48</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=6;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                            <ka:cuePoint>
+                                <ka:cuePointTime>12:48</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=7;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                
+                            <ka:cuePoint>
+                                <ka:cuePointTime>22:55</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=8;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                            <ka:cuePoint>
+                                <ka:cuePointTime>22:55</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=9;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                            <ka:cuePoint>
+                                <ka:cuePointTime>22:55</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=10;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                            <ka:cuePoint>
+                                <ka:cuePointTime>22:55</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=11;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                            <ka:cuePoint>
+                                <ka:cuePointTime>22:55</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=12;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                
+                            <ka:cuePoint>
+                                <ka:cuePointTime>29:15</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=13;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                            <ka:cuePoint>
+                                <ka:cuePointTime>29:15</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=14;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                            <ka:cuePoint>
+                                <ka:cuePointTime>29:15</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=15;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                            <ka:cuePoint>
+                                <ka:cuePointTime>29:15</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=16;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                            <ka:cuePoint>
+                                <ka:cuePointTime>29:15</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=17;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                
+                            <ka:cuePoint>
+                                <ka:cuePointTime>41:05</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=18;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                            <ka:cuePoint>
+                                <ka:cuePointTime>41:05</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=19;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                            <ka:cuePoint>
+                                <ka:cuePointTime>41:05</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=20;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                            <ka:cuePoint>
+                                <ka:cuePointTime>41:05</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=21;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                            <ka:cuePoint>
+                                <ka:cuePointTime>41:05</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=22;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                
+                            <ka:cuePoint>
+                                <ka:cuePointTime>53:20</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=23;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                            <ka:cuePoint>
+                                <ka:cuePointTime>53:20</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=24;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                            <ka:cuePoint>
+                                <ka:cuePointTime>53:20</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=25;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                            <ka:cuePoint>
+                                <ka:cuePointTime>53:20</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=26;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                            <ka:cuePoint>
+                                <ka:cuePointTime>53:20</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=27;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                
+                            <ka:cuePoint>
+                                <ka:cuePointTime>01:05:32</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=28;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                            <ka:cuePoint>
+                                <ka:cuePointTime>01:05:32</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=29;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                            <ka:cuePoint>
+                                <ka:cuePointTime>01:05:32</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=30;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                            <ka:cuePoint>
+                                <ka:cuePointTime>01:05:32</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=31;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                            <ka:cuePoint>
+                                <ka:cuePointTime>01:05:32</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=32;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                
+                            <ka:cuePoint>
+                                <ka:cuePointTime>01:13:08</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=33;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                            <ka:cuePoint>
+                                <ka:cuePointTime>01:13:08</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=34;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                            <ka:cuePoint>
+                                <ka:cuePointTime>01:13:08</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=35;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                            <ka:cuePoint>
+                                <ka:cuePointTime>01:13:08</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=36;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                            <ka:cuePoint>
+                                <ka:cuePointTime>01:13:08</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=37;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                
+                            <ka:cuePoint>
+                                <ka:cuePointTime>01:22:21</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=38;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                            <ka:cuePoint>
+                                <ka:cuePointTime>01:22:21</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=39;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                            <ka:cuePoint>
+                                <ka:cuePointTime>01:22:21</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=40;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                            <ka:cuePoint>
+                                <ka:cuePointTime>01:22:21</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=41;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                            <ka:cuePoint>
+                                <ka:cuePointTime>01:22:21</ka:cuePointTime>
+                                <ka:cuePointData>
+                                    <type>ad</type>
+                                    <format>VAST 2.0</format>
+                                    <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=42;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                                </ka:cuePointData>
+                            </ka:cuePoint> 
+                        
+                
+            
+                        <ka:cuePoint>
+                            <ka:cuePointTime>01:29:52</ka:cuePointTime>
+                            <ka:cuePointData>
+                                <type>ad</type>
+                                <format>VAST 2.0</format>
+                                <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=43;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                            </ka:cuePointData>
+                        </ka:cuePoint>
+               
+                        <ka:cuePoint>
+                            <ka:cuePointTime>01:29:52</ka:cuePointTime>
+                            <ka:cuePointData>
+                                <type>ad</type>
+                                <format>VAST 2.0</format>
+                                <uri>http://ad.doubleclick.net/pfadx/bet.com/Video;n=the-full-show;sub=blackgirlsrock;prod=;sz=250x250;show=blackgirlsrock;embedshow=&lt;parameters.betembedshow&gt;;embedn=&lt;parameters.betembedn&gt;;prog=fullepisode;tile=4;ct=indivmediapage;loc=4;anum=44;&lt;parameters.aamBetdfpValue&gt;&amp;etc&amp;u=&lt;parameters.aamUuidValue&gt;;domainname=&lt;parameters.domainname&gt;;u_l=&lt;parameters.refUrl&gt;;ord=&lt;parameters.betord&gt;;</uri>
+                            </ka:cuePointData>
+                        </ka:cuePoint>
+               
+            
+            </ka:cuePoints>
+             
+            <media:scenes>
+                                
+                <media:scene>
+                    
+                    <sceneTitle>Segment 1</sceneTitle>
+                    <sceneStartTime>00:00</sceneStartTime>
+                    <sceneEndTime>12:48</sceneEndTime>
+                    <ka:sceneStartMarker>true</ka:sceneStartMarker>
+                    <ka:sceneUri>http://www.bet.com/content/betcom/video/blackgirlsrock/2013/exclusives/the-full-show/_jcr_content/leftcol/videoplayer/clip1.smil</ka:sceneUri>
+                </media:scene>
+                                
+                <media:scene>
+                    
+                    <sceneTitle>Segment 2</sceneTitle>
+                    <sceneStartTime>12:48</sceneStartTime>
+                    <sceneEndTime>22:55</sceneEndTime>
+                    <ka:sceneStartMarker>true</ka:sceneStartMarker>
+                    <ka:sceneUri>http://www.bet.com/content/betcom/video/blackgirlsrock/2013/exclusives/the-full-show/_jcr_content/leftcol/videoplayer/clip2.smil</ka:sceneUri>
+                </media:scene>
+                                
+                <media:scene>
+                    
+                    <sceneTitle>Segment 3</sceneTitle>
+                    <sceneStartTime>22:55</sceneStartTime>
+                    <sceneEndTime>29:15</sceneEndTime>
+                    <ka:sceneStartMarker>true</ka:sceneStartMarker>
+                    <ka:sceneUri>http://www.bet.com/content/betcom/video/blackgirlsrock/2013/exclusives/the-full-show/_jcr_content/leftcol/videoplayer/clip3.smil</ka:sceneUri>
+                </media:scene>
+                                
+                <media:scene>
+                    
+                    <sceneTitle>Segment 4</sceneTitle>
+                    <sceneStartTime>29:15</sceneStartTime>
+                    <sceneEndTime>41:05</sceneEndTime>
+                    <ka:sceneStartMarker>true</ka:sceneStartMarker>
+                    <ka:sceneUri>http://www.bet.com/content/betcom/video/blackgirlsrock/2013/exclusives/the-full-show/_jcr_content/leftcol/videoplayer/clip4.smil</ka:sceneUri>
+                </media:scene>
+                                
+                <media:scene>
+                    
+                    <sceneTitle>Segment 5</sceneTitle>
+                    <sceneStartTime>41:05</sceneStartTime>
+                    <sceneEndTime>53:20</sceneEndTime>
+                    <ka:sceneStartMarker>true</ka:sceneStartMarker>
+                    <ka:sceneUri>http://www.bet.com/content/betcom/video/blackgirlsrock/2013/exclusives/the-full-show/_jcr_content/leftcol/videoplayer/clip5.smil</ka:sceneUri>
+                </media:scene>
+                                
+                <media:scene>
+                    
+                    <sceneTitle>Segment 6</sceneTitle>
+                    <sceneStartTime>53:20</sceneStartTime>
+                    <sceneEndTime>01:05:32</sceneEndTime>
+                    <ka:sceneStartMarker>true</ka:sceneStartMarker>
+                    <ka:sceneUri>http://www.bet.com/content/betcom/video/blackgirlsrock/2013/exclusives/the-full-show/_jcr_content/leftcol/videoplayer/clip6.smil</ka:sceneUri>
+                </media:scene>
+                                
+                <media:scene>
+                    
+                    <sceneTitle>Segment 7</sceneTitle>
+                    <sceneStartTime>01:05:32</sceneStartTime>
+                    <sceneEndTime>01:13:08</sceneEndTime>
+                    <ka:sceneStartMarker>true</ka:sceneStartMarker>
+                    <ka:sceneUri>http://www.bet.com/content/betcom/video/blackgirlsrock/2013/exclusives/the-full-show/_jcr_content/leftcol/videoplayer/clip7.smil</ka:sceneUri>
+                </media:scene>
+                                
+                <media:scene>
+                    
+                    <sceneTitle>Segment 8</sceneTitle>
+                    <sceneStartTime>01:13:08</sceneStartTime>
+                    <sceneEndTime>01:22:21</sceneEndTime>
+                    <ka:sceneStartMarker>true</ka:sceneStartMarker>
+                    <ka:sceneUri>http://www.bet.com/content/betcom/video/blackgirlsrock/2013/exclusives/the-full-show/_jcr_content/leftcol/videoplayer/clip8.smil</ka:sceneUri>
+                </media:scene>
+                                
+                <media:scene>
+                    
+                    <sceneTitle>Segment 9</sceneTitle>
+                    <sceneStartTime>01:22:21</sceneStartTime>
+                    <sceneEndTime>01:29:52</sceneEndTime>
+                    <ka:sceneStartMarker>true</ka:sceneStartMarker>
+                    <ka:sceneUri>http://www.bet.com/content/betcom/video/blackgirlsrock/2013/exclusives/the-full-show/_jcr_content/leftcol/videoplayer/clip9.smil</ka:sceneUri>
+                </media:scene>
+                
+            </media:scenes>
+           
+            <media:content type="application/smil+xml" medium="video">
+            
+                <media:thumbnail url="http://www.bet.com/content/dam/betcom/images/2013/11/Shows/Bobby-Jones-Gospel/bgr13_fullshow2.jpg"/>
+            </media:content>
+            
+        </item>
+        
+    </channel>
+</rss> 

@@ -388,13 +388,15 @@ MediaRSS.util = {
             if(typeof instance !== "undefined") {
                 req.instance = instance;
             }
+            console.info("before request to mrss url :" , uri);
             req.open(method,uri,true);
             try {
                 req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             } catch(err) { }
             req.onreadystatechange = function() {
                 if(this.readyState === 4) {
-                    if(this.status === 200) {
+                	console.info("after request to get :"+ uri , this.statusText);
+                	if(this.status === 200) {
                         if(this.callback){
                             if(typeof this.callback === "string") {
                                 eval(this.callback + "(" + this.responseText + "," + this.callbackData + "," + instance + ")");   

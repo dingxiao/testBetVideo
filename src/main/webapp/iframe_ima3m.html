@@ -82,9 +82,9 @@
     videoURLArray[0] = decodeURIComponent(query.video);
     adURLArray[0] = decodeURIComponent(query.adTag);
     posterURLArray[0] = decodeURIComponent(query.poster);
-    videoURLArray[1] = decodeURIComponent(query.video) + '&seg=1';
+    videoURLArray[1] = decodeURIComponent(query.video2) + '&seg=1';
     adURLArray[1] = decodeURIComponent(query.adTag);
-    posterURLArray[1] = decodeURIComponent(query.poster);
+    posterURLArray[1] = decodeURIComponent(query.poster2);
     videoURLArray[2] = decodeURIComponent(query.video) + '&seg=2';
     adURLArray[2] = decodeURIComponent(query.adTag);
     posterURLArray[2] = decodeURIComponent(query.poster);
@@ -111,6 +111,8 @@
     console.log(ua);
 
     console.log('video src=' + videoURL);
+    console.log('video2 src=' + videoURLArray[1]);
+    console.log('poater2 src=' + posterURLArray[1]);
     console.log('query adURL=' + adURL);
 
     var contentEndedListener; 
@@ -289,7 +291,8 @@
     	console.log('ima3 Ad event: content ended');
     	this.contentCompleteCalled = true;
         this.adsLoader.contentComplete();
-        startNextSegment();
+        if (!this.controller.adsActive)
+            startNextSegment();
     };
 
 
@@ -342,7 +345,7 @@
         // simulate playback to enable the video element for later program-triggered
         // playback.
         if (this.isMobilePlatform()) {
-            //for mobile, 1 load content 2 load metadata for player 3 request ad
+            //for mobile, 1 load content 2 load metadata for player 3 request ad in main controller
             this.contentPreloadHandler = contentLoadedAction;
             this.contentPlayer.addEventListener(
                     'loadedmetadata',
@@ -375,7 +378,8 @@
         
         this.contentPlayer.setAttribute('poster', '');
         console.log('ima3 player event: play ' + videoURL);
-        // Register for Omniture events
+        // Register for Omniture events ,remove at end of this segment
+       
         this.contentPlayer.addEventListener('loadedmetadata', playerHandler, false);
         this.contentPlayer.addEventListener('play', playerHandler, false);
         this.contentPlayer.addEventListener('pause', playerHandler, false);
@@ -384,6 +388,7 @@
         //this.contentPlayer.addEventListener('dblclick', toggleFullScreen, false);
         //this.contentPlayer.addEventListener('webkitbeginfullscreen', this.onPlayerEnterFullscreen, false);
         //this.contentPlayer.addEventListener('mozbeginfullscreen', this.onPlayerEnterFullscreen, false);
+        
         //have error in full episode, add below--ding
         if (mainController && !mainController.adsActive)
            this.contentPlayer.src = videoURL;
@@ -543,14 +548,14 @@
 
     MainController.prototype.onClick = function() {
         var that = this;
-        console.log('Click. Ads done:' + this.adsDone);
+        console.log('Click. on main, adDone is:' + this.adsDone);
         if (!this.adsDone) {
             this.playButton.style.display = 'none';
             this.playerController.contentPlayer.setAttribute('poster', '');
             this.playerController.contentPlayer.removeEventListener('play', this.playListener, false);
-            setTimeout(function(){
-                that.playerController.contentPlayer.pause(); //block play so it buffers before playing
-            }, 1);
+            //setTimeout(function(){
+                //that.playerController.contentPlayer.pause(); //block play so it buffers before playing
+            //}, 1);
 
             // The user clicked/tapped - inform the ads controller that this code
             // is being run in a user action thread.
@@ -606,7 +611,7 @@
         // ads finish.
         this.playerController.unregisterVideoEndedCallback(this.contentEndedCallback);
         this.adsActive = true;
-        this.playing = true;
+        //this.playing = true;
         this.playerController.pause();
     };
 
@@ -617,7 +622,8 @@
     };
 
     MainController.prototype.contentPreloadHandler = function() {
-        this.playerController.removeContentPreloadHandler();
+    	console.log('contentPreloadHandler');
+    	this.playerController.removeContentPreloadHandler();
         this.loadAds();
     };
 
@@ -727,9 +733,19 @@
 	        mainController.adsController.contentCompleteCalled = false;
 	        mainController.adsActive = true;
 	        //mainController.playerController.registerVideoEndedCallback(mainController.contentEndedCallback)
-	        mainController.loadAds();
-            mainController.playerController.load();
             //mainController.playerController.preloadContent(mainController.bind(mainController, mainController.contentPreloadHandler));
+            mainController.playerController.contentPlayer.removeEventListener('loadedmetadata', playerHandler, false);
+            mainController.playerController.contentPlayer.removeEventListener('play', playerHandler, false);
+            mainController.playerController.contentPlayer.removeEventListener('pause', playerHandler, false);
+            mainController.playerController.contentPlayer.removeEventListener('ended', playerHandler, false);
+            mainController.playerController.contentPlayer.removeEventListener('webkitendfullscreen', mainController.playerController.onPlayerEndFullscreen, false);
+            mainController.playerController.saveCurrentTime();
+//             mainController.playerController.contentPlayer.addEventListener(
+//                     'loadedmetadata',
+//                     mainController.playerController.contentPreloadHandler,
+//                     false);
+            mainController.playerController.contentPlayer.load();
+            mainController.loadAds(); //add will be loaded at contentPreloadHandler
         }
     }
 

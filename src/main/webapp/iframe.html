@@ -104,7 +104,7 @@
             var queryNameVal = queryNameVals[i].split("=");
             query[queryNameVal[0]] = queryNameVal[1];
         }
-
+        //just test mRSS
 		var BrowserUtils = {},
 		    ub = BrowserUtils,
 		    ua = navigator.userAgent;
@@ -132,7 +132,8 @@
         
 		if(query.hasOwnProperty("video")) {
 			videoURL = unescape(query.video);
-		    	var mrssURL = query.hasOwnProperty("mrss") ? query.mrss : "sample4.mrss";
+		    	var mrssURL = query.hasOwnProperty("mrss") ? query.mrss : "sampleFull.mrss";
+		    	//mrssURL = "http://www.bet.com/content/betcom/video/blackgirlsrock/2013/exclusives/the-full-show/_jcr_content/leftcol/videoplayer.mrss";
 	            playlistManager = new PlayListManager(proxyURL + mrssURL,videoContent);//proxyURL + mrssURL);
 	            //should get token from video
 	            console.log(videoURL);
